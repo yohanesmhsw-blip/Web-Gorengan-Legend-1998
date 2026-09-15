@@ -1,1496 +1,1234 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Gorengan Enak</title>
-
-<style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f7f7;
-    color: #222;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-    background: linear-gradient(135deg, #e85d04, #f48c06);
-    color: white;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-}
-
-.header-content {
-    max-width: 1100px;
-    margin: auto;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo-icon {
-    width: 45px;
-    height: 45px;
-
-    background: white;
-    color: #e85d04;
-
-    border-radius: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-}
-
-.logo h1 {
-    font-size: 22px;
-}
-
-.logo p {
-    font-size: 12px;
-    opacity: 0.9;
-}
-
-.cart-button {
-    position: relative;
-
-    background: white;
-    color: #e85d04;
-
-    border: none;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-
-    font-size: 22px;
-
-    cursor: pointer;
-}
-
-.cart-count {
-    position: absolute;
-
-    top: -5px;
-    right: -5px;
-
-    width: 22px;
-    height: 22px;
-
-    background: #d00000;
-    color: white;
-
-    border-radius: 50%;
-
-    font-size: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    max-width: 1100px;
-
-    margin: 25px auto;
-
-    padding: 30px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff3e0,
-            #ffe0b2
-        );
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    overflow: hidden;
-}
-
-.hero-text {
-    max-width: 600px;
-}
-
-.hero h2 {
-    font-size: 32px;
-
-    color: #c2410c;
-
-    margin-bottom: 10px;
-}
-
-.hero p {
-    color: #666;
-
-    line-height: 1.6;
-}
-
-.hero-icon {
-    font-size: 100px;
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.main {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 0 20px 100px;
-}
-
-.section-title {
-    margin: 30px 0 18px;
-}
-
-.section-title h2 {
-    font-size: 24px;
-}
-
-.section-title p {
-    color: #777;
-
-    margin-top: 5px;
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-.menu-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-}
-
-.menu-card {
-
-    background: white;
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.07);
-
-    transition: 0.2s;
-
-}
-
-.menu-card:hover {
-
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.12);
-
-}
-
-.product-image {
-
-    height: 170px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff3e0,
-            #ffe0b2
-        );
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 80px;
-}
-
-.product-info {
-
-    padding: 15px;
-}
-
-.product-name {
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-}
-
-.product-description {
-
-    font-size: 13px;
-
-    color: #888;
-
-    min-height: 35px;
-
-    line-height: 1.4;
-}
-
-.product-bottom {
-
-    margin-top: 15px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-}
-
-.price {
-
-    color: #e85d04;
-
-    font-size: 17px;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   QUANTITY
-===================================================== */
-
-.quantity {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-}
-
-.quantity button {
-
-    width: 32px;
-
-    height: 32px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #fff0e5;
-
-    color: #e85d04;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.quantity button:hover {
-
-    background: #e85d04;
-
-    color: white;
-}
-
-.quantity span {
-
-    width: 20px;
-
-    text-align: center;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   FORM
-===================================================== */
-
-.form-box {
-
-    margin-top: 30px;
-
-    background: white;
-
-    padding: 25px;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.07);
-}
-
-.form-box h2 {
-
-    margin-bottom: 20px;
-}
-
-.form-group {
-
-    margin-bottom: 16px;
-}
-
-.form-group label {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-
-    border-color: #e85d04;
-}
-
-.form-group textarea {
-
-    min-height: 90px;
-
-    resize: vertical;
-}
-
-
-/* =====================================================
-   CART
-===================================================== */
-
-.cart-box {
-
-    margin-top: 25px;
-
-    background: #fffaf5;
-
-    border: 1px solid #ffe0c2;
-
-    border-radius: 15px;
-
-    padding: 20px;
-}
-
-.cart-box h2 {
-
-    margin-bottom: 15px;
-}
-
-.cart-item {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 12px 0;
-
-    border-bottom: 1px solid #eee;
-}
-
-.cart-item:last-child {
-
-    border-bottom: none;
-}
-
-.cart-item-name {
-
-    font-weight: bold;
-
-    font-size: 14px;
-}
-
-.cart-item-detail {
-
-    color: #777;
-
-    font-size: 12px;
-
-    margin-top: 4px;
-}
-
-.cart-total {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding-top: 15px;
-
-    margin-top: 10px;
-
-    border-top: 2px dashed #ddd;
-}
-
-.cart-total span:last-child {
-
-    color: #e85d04;
-
-    font-size: 21px;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   WHATSAPP BUTTON
-===================================================== */
-
-.whatsapp-button {
-
-    width: 100%;
-
-    margin-top: 20px;
-
-    padding: 16px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #25D366;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.whatsapp-button:hover {
-
-    background: #1ebe5d;
-
-    transform: translateY(-2px);
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-
-    text-align: center;
-
-    padding: 25px;
-
-    color: #888;
-
-    font-size: 13px;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 800px) {
-
-    .menu-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-    .hero-icon {
-
-        font-size: 70px;
-
-    }
-
-}
-
-
-@media (max-width: 550px) {
-
-    body {
-
-        padding-bottom: 20px;
-
-    }
-
-    .header {
-
-        padding: 14px;
-
-    }
-
-    .logo h1 {
-
-        font-size: 18px;
-
-    }
-
-    .logo p {
-
-        font-size: 10px;
-
-    }
-
-    .hero {
-
-        margin: 15px;
-
-        padding: 22px;
-
-    }
-
-    .hero h2 {
-
-        font-size: 24px;
-
-    }
-
-    .hero-icon {
-
-        font-size: 50px;
-
-    }
-
-    .main {
-
-        padding: 0 15px 80px;
-
-    }
-
-    .menu-grid {
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 10px;
-
-    }
-
-    .product-image {
-
-        height: 120px;
-
-        font-size: 55px;
-
-    }
-
-    .product-info {
-
-        padding: 12px;
-
-    }
-
-    .product-name {
-
-        font-size: 14px;
-
-    }
-
-    .product-description {
-
-        font-size: 11px;
-
-    }
-
-    .price {
-
-        font-size: 14px;
-
-    }
-
-    .quantity {
-
-        gap: 4px;
-
-    }
-
-    .quantity button {
-
-        width: 28px;
-
-        height: 28px;
-
-    }
-
-}
-
-
-/* =====================================================
-   EMPTY CART
-===================================================== */
-
-.empty-cart {
-
-    text-align: center;
-
-    color: #999;
-
-    padding: 15px;
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gorengan Legend 1998</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f6f0df;
+            --cream-dark: #e9dfc7;
+            --white: #ffffff;
+            --green: #173f2b;
+            --green-light: #2f6548;
+            --gold: #c5a45d;
+            --text: #26352d;
+            --gray: #6f776f;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        /* HEADER */
+        header {
+            background: var(--green);
+            color: white;
+            padding: 18px 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 22px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 11px;
+            color: #d8c99f;
+            margin-top: 3px;
+        }
+
+        /* HERO */
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(23,63,43,0.92),
+                    rgba(23,63,43,0.92)
+                ),
+                url("images/brand-ambassador.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 75px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            color: #e9e2cf;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 18px;
+            border: 1px solid #cbb77c;
+            border-radius: 30px;
+            color: #e4d39c;
+            font-size: 13px;
+        }
+
+        /* MAIN */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 45px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: var(--green);
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+        }
+
+        /* MENU */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(30,50,40,0.08);
+            border: 1px solid #e8dfcb;
+            transition: 0.25s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(30,50,40,0.13);
+        }
+
+        .menu-image {
+            height: 110px;
+            border-radius: 14px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            margin-bottom: 17px;
+        }
+
+        .menu-card h3 {
+            color: var(--green);
+            margin-bottom: 7px;
+        }
+
+        .price {
+            color: var(--green-light);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--cream);
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        .quantity button {
+            border: none;
+            background: var(--green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .quantity span {
+            font-weight: bold;
+            color: var(--green);
+        }
+
+        /* ORDER */
+        .order-section {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .box {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 5px 20px rgba(30,50,40,0.08);
+            border: 1px solid #e8dfcb;
+        }
+
+        .box h2 {
+            color: var(--green);
+            margin-bottom: 22px;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--green);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d9d2c0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: #fffdf8;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--green);
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        /* DATE INFO */
+        .date-info {
+            background: var(--cream);
+            border-left: 4px solid var(--green);
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .date-info strong {
+            color: var(--green);
+        }
+
+        /* CART */
+        .cart {
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 17px;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid #ded6c4;
+            font-size: 14px;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--green);
+        }
+
+        .empty-cart {
+            color: var(--gray);
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* WHATSAPP */
+        .whatsapp-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: var(--green);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        /* QRIS */
+        .qris-box {
+            text-align: center;
+        }
+
+        .qris-box h2 {
+            margin-bottom: 8px;
+        }
+
+        .qris-box p {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .qris-image {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 15px;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .payment-note {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--cream);
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        /* BRAND AMBASSADOR */
+        .brand-section {
+            margin-top: 70px;
+            background: var(--green);
+            padding: 55px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .brand-section h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .brand-section p {
+            color: #d9dfd9;
+            margin-bottom: 30px;
+        }
+
+        .ba-card {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .ba-card img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #102d20;
+            color: #cfd7d1;
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+            .order-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .navbar {
+                gap: 10px;
+            }
+
+            .logo h1 {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header class="header">
-
-    <div class="header-content">
+<!-- HEADER -->
+<header>
+    <div class="navbar">
 
         <div class="logo">
-
-            <div class="logo-icon">
-                🥟
-            </div>
+            <div class="logo-icon">🥟</div>
 
             <div>
+                <h1>Gorengan Legend 1998</h1>
+                <span>Rasa Legend, Harga Bersahabat</span>
+            </div>
+        </div>
 
-                <h1>Gorengan Enak</h1>
+    </div>
+</header>
 
-                <p>Fresh • Renyah • Nikmat</p>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-badge">
+        ✦ GORENGAN LEGEND 1998 ✦
+    </div>
+
+    <h2>Gorengan Hangat,<br>Rasa yang Selalu Diingat</h2>
+
+    <p>
+        Pesan gorengan favoritmu dengan mudah.
+        Pilih menu, tentukan tanggal dan waktu pesanan,
+        lalu kirim pesanan langsung melalui WhatsApp.
+    </p>
+
+</section>
+
+
+<!-- MENU -->
+<div class="container">
+
+    <div class="section-title">
+        <h2>Menu Gorengan</h2>
+        <p>Pilih gorengan favorit kamu</p>
+    </div>
+
+    <div class="menu-grid" id="menuContainer"></div>
+
+
+    <!-- ORDER AREA -->
+    <div class="order-section">
+
+        <!-- FORM -->
+        <div class="box">
+
+            <h2>🧾 Detail Pemesanan</h2>
+
+            <!-- TANGGAL PEMESANAN OTOMATIS -->
+            <div class="date-info">
+                <div>
+                    <strong>Tanggal Pemesanan:</strong>
+                    <span id="tanggalPemesanan"></span>
+                </div>
+
+                <div style="margin-top:5px;">
+                    <strong>Waktu Pemesanan:</strong>
+                    <span id="waktuPemesanan"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Nama Pemesan</label>
+
+                <input
+                    type="text"
+                    id="nama"
+                    placeholder="Masukkan nama kamu"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label>Lantai / Lokasi</label>
+
+                <select id="lantai">
+                    <option value="">-- Pilih lokasi --</option>
+                    <option>Lantai 1</option>
+                    <option>Lantai 2</option>
+                    <option>Lantai 3</option>
+                    <option>Lantai 4</option>
+                    <option>Lobby</option>
+                    <option>Lainnya</option>
+                </select>
+            </div>
+
+
+            <!-- TANGGAL PESANAN -->
+            <div class="form-group">
+
+                <label>Tanggal Pesanan</label>
+
+                <input
+                    type="date"
+                    id="tanggalPesanan"
+                >
 
             </div>
+
+
+            <!-- JAM PESANAN -->
+            <div class="form-group">
+
+                <label>Jam Pesanan</label>
+
+                <input
+                    type="time"
+                    id="jamPesanan"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Catatan / Keterangan</label>
+
+                <textarea
+                    id="catatan"
+                    placeholder="Contoh: tidak terlalu pedas, antar ke meja, dll."
+                ></textarea>
+
+            </div>
+
+
+            <!-- CART -->
+            <div class="cart">
+
+                <div id="cartItems">
+                    <div class="empty-cart">
+                        Belum ada pesanan
+                    </div>
+                </div>
+
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="totalHarga">Rp0</span>
+                </div>
+
+            </div>
+
+
+            <button
+                class="whatsapp-btn"
+                onclick="kirimWhatsApp()"
+            >
+                📱 Pesan via WhatsApp
+            </button>
 
         </div>
 
 
-        <button
-            class="cart-button"
-            onclick="scrollToCart()">
+        <!-- QRIS -->
+        <div class="box qris-box">
 
-            🛒
+            <h2>💳 Pembayaran QRIS</h2>
 
-            <span
-                class="cart-count"
-                id="cartCount">
+            <p>
+                Silakan lakukan pembayaran menggunakan QRIS
+                setelah melakukan pemesanan.
+            </p>
 
-                0
+            <img
+                src="images/qris.jpg"
+                alt="QRIS Gorengan Legend 1998"
+                class="qris-image"
+            >
 
-            </span>
+            <div class="payment-note">
+                📌 Setelah pembayaran, simpan bukti pembayaran
+                dan kirimkan melalui WhatsApp.
+            </div>
 
-        </button>
-
-    </div>
-
-</header>
-
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-text">
-
-        <h2>
-            Gorengan Hangat,
-            Langsung Pesan! 🔥
-        </h2>
-
-        <p>
-            Pilih gorengan favoritmu,
-            tentukan jumlahnya,
-            kemudian kirim pesanan
-            langsung melalui WhatsApp.
-        </p>
+        </div>
 
     </div>
 
-    <div class="hero-icon">
-        🍤
+</div>
+
+
+<!-- BRAND AMBASSADOR -->
+<section class="brand-section">
+
+    <h2>⭐ Brand Ambassador</h2>
+
+    <p>
+        Kenalan dengan wajah di balik Gorengan Legend 1998
+    </p>
+
+    <div class="ba-card">
+
+        <img
+            src="images/brand-ambassador.jpg"
+            alt="Brand Ambassador Gorengan Legend 1998"
+        >
+
     </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
-
-
-    <div class="section-title">
-
-        <h2>
-            Menu Gorengan
-        </h2>
-
-        <p>
-            Pilih menu yang kamu inginkan
-        </p>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         MENU
-    ===================================================== -->
-
-    <section
-        class="menu-grid"
-        id="menuGrid">
-    </section>
-
-
-
-    <!-- =====================================================
-         DATA PEMESAN
-    ===================================================== -->
-
-    <section class="form-box">
-
-        <h2>
-            📋 Data Pemesan
-        </h2>
-
-
-        <div class="form-group">
-
-            <label>
-                Nama Pemesan
-            </label>
-
-            <input
-                type="text"
-                id="nama"
-                placeholder="Contoh: Budi">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Lantai / Lokasi
-            </label>
-
-            <select id="lantai">
-
-                <option value="">
-                    Pilih lantai
-                </option>
-
-                <option value="Lantai 1">
-                    Lantai 1
-                </option>
-
-                <option value="Lantai 2">
-                    Lantai 2
-                </option>
-
-                <option value="Lantai 3">
-                    Lantai 3
-                </option>
-
-                <option value="Lantai 4">
-                    Lantai 4
-                </option>
-
-                <option value="Lobby">
-                    Lobby
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Catatan
-            </label>
-
-            <textarea
-                id="catatan"
-                placeholder="Contoh: Tolong pisahkan sambal...">
-            </textarea>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         CART
-    ===================================================== -->
-
-    <section
-        class="cart-box"
-        id="cartBox">
-
-        <h2>
-            🛒 Pesanan Kamu
-        </h2>
-
-
-        <div id="cartItems">
-
-            <div class="empty-cart">
-
-                Belum ada gorengan yang dipilih.
-
-            </div>
-
-        </div>
-
-
-        <div class="cart-total">
-
-            <span>
-                Total
-            </span>
-
-            <span id="totalHarga">
-                Rp0
-            </span>
-
-        </div>
-
-
-        <button
-            class="whatsapp-button"
-            onclick="pesanWhatsApp()">
-
-            📱 Pesan via WhatsApp
-
-        </button>
-
-    </section>
-
-</main>
-
-
-
-<footer class="footer">
-
-    © 2026 Gorengan Enak
-    • Fresh setiap hari ❤️
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 <strong>Gorengan Legend 1998</strong>
+    </p>
+
+    <p style="margin-top:6px;">
+        Rasa Legend • Dibuat dengan Sepenuh Hati
+    </p>
 
 </footer>
 
 
-
 <script>
 
-/* =====================================================
-   DATA MENU
-===================================================== */
+    /* =========================================
+       DATA MENU
+    ========================================= */
 
-const products = [
+    const menu = [
 
-    {
-        id: 1,
-        name: "Pisang Goreng",
-        price: 3000,
-        emoji: "🍌",
-        description: "Pisang goreng renyah dan gurih"
-    },
+        {
+            nama: "Pisang Goreng",
+            harga: 3000,
+            emoji: "🍌"
+        },
 
-    {
-        id: 2,
-        name: "Pisang Goreng Susu Keju",
-        price: 8000,
-        emoji: "🍌🧀",
-        description: "Pisang goreng dengan susu dan keju"
-    },
+        {
+            nama: "Pisang Goreng Susu Keju",
+            harga: 8000,
+            emoji: "🍌"
+        },
 
-    {
-        id: 3,
-        name: "Risol Mayo",
-        price: 3000,
-        emoji: "🥟",
-        description: "Risol crispy dengan isian mayo"
-    },
+        {
+            nama: "Risol Mayo",
+            harga: 3000,
+            emoji: "🥟"
+        },
 
-    {
-        id: 4,
-        name: "Ubi Rambat",
-        price: 3000,
-        emoji: "🍠",
-        description: "Ubi rambat goreng renyah"
-    },
+        {
+            nama: "Ubi Rambat",
+            harga: 3000,
+            emoji: "🍠"
+        },
 
-    {
-        id: 5,
-        name: "Chai Kue",
-        price: 8000,
-        emoji: "🥟",
-        description: "Chai kue lembut dengan isian gurih"
-    },
+        {
+            nama: "Chai Kue",
+            harga: 8000,
+            emoji: "🥟"
+        },
 
-    {
-        id: 6,
-        name: "Talam Ebi",
-        price: 8000,
-        emoji: "🍘",
-        description: "Talam ebi gurih dan lembut"
-    },
+        {
+            nama: "Talam Ebi",
+            harga: 8000,
+            emoji: "🍘"
+        },
 
-    {
-        id: 7,
-        name: "Keladi Goreng",
-        price: 2000,
-        emoji: "🥔",
-        description: "Keladi goreng renyah dan gurih"
+        {
+            nama: "Keladi Goreng",
+            harga: 2000,
+            emoji: "🍠"
+        }
+
+    ];
+
+
+    /* =========================================
+       KERANJANG
+    ========================================= */
+
+    let cart = {};
+
+
+    /* =========================================
+       FORMAT RUPIAH
+    ========================================= */
+
+    function rupiah(angka) {
+
+        return new Intl.NumberFormat(
+            "id-ID",
+            {
+                style: "currency",
+                currency: "IDR",
+                minimumFractionDigits: 0
+            }
+        ).format(angka);
+
     }
 
-];
 
+    /* =========================================
+       TAMPILKAN MENU
+    ========================================= */
 
+    function tampilkanMenu() {
 
-/* =====================================================
-   CART
-===================================================== */
+        const container =
+            document.getElementById("menuContainer");
 
-let cart = {};
+        container.innerHTML = "";
 
+        menu.forEach((item, index) => {
 
+            cart[index] = 0;
 
-/* =====================================================
-   FORMAT RUPIAH
-===================================================== */
+            container.innerHTML += `
 
-function formatRupiah(number) {
+                <div class="menu-card">
 
-    return new Intl.NumberFormat(
-        "id-ID",
-        {
-            style: "currency",
-            currency: "IDR",
-            minimumFractionDigits: 0
-        }
-    ).format(number);
-
-}
-
-
-
-/* =====================================================
-   TAMPILKAN MENU
-===================================================== */
-
-function tampilkanMenu() {
-
-    const menuGrid =
-        document.getElementById("menuGrid");
-
-
-    menuGrid.innerHTML = "";
-
-
-    products.forEach(product => {
-
-        const quantity =
-            cart[product.id] || 0;
-
-
-        const card = document.createElement("div");
-
-        card.className = "menu-card";
-
-
-        card.innerHTML = `
-
-            <div class="product-image">
-
-                ${product.emoji}
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-name">
-
-                    ${product.name}
-
-                </div>
-
-
-                <div class="product-description">
-
-                    ${product.description}
-
-                </div>
-
-
-                <div class="product-bottom">
-
-                    <div class="price">
-
-                        ${formatRupiah(product.price)}
-
+                    <div class="menu-image">
+                        ${item.emoji}
                     </div>
 
+                    <h3>
+                        ${item.nama}
+                    </h3>
+
+                    <div class="price">
+                        ${rupiah(item.harga)}
+                    </div>
 
                     <div class="quantity">
 
                         <button
-                            onclick="ubahJumlah(${product.id}, -1)">
-
+                            onclick="kurangi(${index})"
+                        >
                             −
-
                         </button>
 
-
-                        <span id="qty-${product.id}">
-
-                            ${quantity}
-
+                        <span id="jumlah-${index}">
+                            0
                         </span>
 
-
                         <button
-                            onclick="ubahJumlah(${product.id}, 1)">
-
+                            onclick="tambah(${index})"
+                        >
                             +
-
                         </button>
 
                     </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        menuGrid.appendChild(card);
-
-    });
-
-}
-
-
-
-/* =====================================================
-   UBAH JUMLAH
-===================================================== */
-
-function ubahJumlah(id, perubahan) {
-
-    if (!cart[id]) {
-
-        cart[id] = 0;
-
-    }
-
-
-    cart[id] += perubahan;
-
-
-    if (cart[id] < 0) {
-
-        cart[id] = 0;
-
-    }
-
-
-    tampilkanMenu();
-
-    tampilkanKeranjang();
-
-}
-
-
-
-/* =====================================================
-   TAMPILKAN KERANJANG
-===================================================== */
-
-function tampilkanKeranjang() {
-
-    const cartItems =
-        document.getElementById("cartItems");
-
-
-    let total = 0;
-
-    let jumlahItem = 0;
-
-    let html = "";
-
-
-    products.forEach(product => {
-
-        const quantity =
-            cart[product.id] || 0;
-
-
-        if (quantity > 0) {
-
-            const subtotal =
-                quantity * product.price;
-
-
-            total += subtotal;
-
-            jumlahItem += quantity;
-
-
-            html += `
-
-                <div class="cart-item">
-
-                    <div>
-
-                        <div class="cart-item-name">
-
-                            ${product.name}
-
-                        </div>
-
-                        <div class="cart-item-detail">
-
-                            ${quantity} ×
-                            ${formatRupiah(product.price)}
-
-                        </div>
-
-                    </div>
-
-
-                    <strong>
-
-                        ${formatRupiah(subtotal)}
-
-                    </strong>
 
                 </div>
 
             `;
 
-        }
-
-    });
-
-
-    if (html === "") {
-
-        html = `
-
-            <div class="empty-cart">
-
-                Belum ada gorengan yang dipilih.
-
-            </div>
-
-        `;
-
-    }
-
-
-    cartItems.innerHTML = html;
-
-
-    document.getElementById(
-        "totalHarga"
-    ).innerText = formatRupiah(total);
-
-
-    document.getElementById(
-        "cartCount"
-    ).innerText = jumlahItem;
-
-}
-
-
-
-/* =====================================================
-   SCROLL KE KERANJANG
-===================================================== */
-
-function scrollToCart() {
-
-    document
-        .getElementById("cartBox")
-        .scrollIntoView({
-            behavior: "smooth"
         });
 
-}
+    }
 
 
+    /* =========================================
+       TAMBAH
+    ========================================= */
 
-/* =====================================================
-   PESAN VIA WHATSAPP
-===================================================== */
+    function tambah(index) {
 
-function pesanWhatsApp() {
+        cart[index]++;
 
-    const nama =
-        document
-        .getElementById("nama")
-        .value
-        .trim();
+        updateCart();
 
-
-    const lantai =
-        document
-        .getElementById("lantai")
-        .value;
+    }
 
 
-    const catatan =
-        document
-        .getElementById("catatan")
-        .value
-        .trim();
+    /* =========================================
+       KURANGI
+    ========================================= */
 
+    function kurangi(index) {
 
-    /* ===============================
-       VALIDASI
-    =============================== */
+        if (cart[index] > 0) {
 
-    let total = 0;
-
-    let jumlahItem = 0;
-
-    let daftarPesanan = "";
-
-
-    products.forEach(product => {
-
-        const quantity =
-            cart[product.id] || 0;
-
-
-        if (quantity > 0) {
-
-            const subtotal =
-                quantity * product.price;
-
-
-            total += subtotal;
-
-            jumlahItem += quantity;
-
-
-            daftarPesanan +=
-
-                `• ${product.name} x ${quantity} = ${formatRupiah(subtotal)}\n`;
+            cart[index]--;
 
         }
 
-    });
-
-
-    if (jumlahItem === 0) {
-
-        alert(
-            "Silakan pilih gorengan terlebih dahulu."
-        );
-
-        return;
+        updateCart();
 
     }
 
 
-    if (nama === "") {
+    /* =========================================
+       UPDATE CART
+    ========================================= */
 
-        alert(
-            "Silakan masukkan nama pemesan."
-        );
+    function updateCart() {
 
-        document
-            .getElementById("nama")
-            .focus();
+        let total = 0;
 
-        return;
+        let html = "";
+
+        let adaPesanan = false;
+
+
+        menu.forEach((item, index) => {
+
+            const jumlah = cart[index];
+
+            document.getElementById(
+                `jumlah-${index}`
+            ).innerText = jumlah;
+
+
+            if (jumlah > 0) {
+
+                adaPesanan = true;
+
+                const subtotal =
+                    item.harga * jumlah;
+
+                total += subtotal;
+
+
+                html += `
+
+                    <div class="cart-item">
+
+                        <span>
+                            ${item.nama}
+                            × ${jumlah}
+                        </span>
+
+                        <strong>
+                            ${rupiah(subtotal)}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+
+        });
+
+
+        if (!adaPesanan) {
+
+            html = `
+                <div class="empty-cart">
+                    Belum ada pesanan
+                </div>
+            `;
+
+        }
+
+
+        document.getElementById(
+            "cartItems"
+        ).innerHTML = html;
+
+
+        document.getElementById(
+            "totalHarga"
+        ).innerText = rupiah(total);
 
     }
 
 
-    if (lantai === "") {
+    /* =========================================
+       TANGGAL & WAKTU PEMESANAN OTOMATIS
+    ========================================= */
 
-        alert(
-            "Silakan pilih lantai / lokasi."
-        );
+    function tanggalSekarang() {
 
-        return;
+        const sekarang = new Date();
+
+
+        const tanggal =
+            sekarang.toLocaleDateString(
+                "id-ID",
+                {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+
+        const waktu =
+            sekarang.toLocaleTimeString(
+                "id-ID",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+
+        document.getElementById(
+            "tanggalPemesanan"
+        ).innerText = tanggal;
+
+
+        document.getElementById(
+            "waktuPemesanan"
+        ).innerText = waktu;
 
     }
 
 
-    /* ===============================
-       PESAN WHATSAPP
-    =============================== */
+    /* =========================================
+       SET DEFAULT TANGGAL PESANAN
+    ========================================= */
 
-    let pesan =
+    function setTanggalMinimum() {
 
-        `*🍽️ PESANAN GORENGAN*\n` +
+        const sekarang = new Date();
 
-        `━━━━━━━━━━━━━━━━━━\n\n` +
+        const tahun =
+            sekarang.getFullYear();
 
-        `👤 *Nama:* ${nama}\n` +
+        const bulan =
+            String(
+                sekarang.getMonth() + 1
+            ).padStart(2, "0");
 
-        `📍 *Lokasi:* ${lantai}\n\n` +
-
-        `*🛒 PESANAN:*\n` +
-
-        `${daftarPesanan}\n` +
-
-        `━━━━━━━━━━━━━━━━━━\n` +
-
-        `💰 *TOTAL: ${formatRupiah(total)}*\n`;
+        const hari =
+            String(
+                sekarang.getDate()
+            ).padStart(2, "0");
 
 
-    if (catatan !== "") {
+        const tanggalHariIni =
+            `${tahun}-${bulan}-${hari}`;
+
+
+        const input =
+            document.getElementById(
+                "tanggalPesanan"
+            );
+
+
+        input.min = tanggalHariIni;
+
+        input.value = tanggalHariIni;
+
+    }
+
+
+    /* =========================================
+       KIRIM KE WHATSAPP
+    ========================================= */
+
+    function kirimWhatsApp() {
+
+        const nama =
+            document.getElementById(
+                "nama"
+            ).value.trim();
+
+
+        const lantai =
+            document.getElementById(
+                "lantai"
+            ).value;
+
+
+        const tanggalPesanan =
+            document.getElementById(
+                "tanggalPesanan"
+            ).value;
+
+
+        const jamPesanan =
+            document.getElementById(
+                "jamPesanan"
+            ).value;
+
+
+        const catatan =
+            document.getElementById(
+                "catatan"
+            ).value.trim();
+
+
+        /* VALIDASI */
+
+        if (!nama) {
+
+            alert(
+                "Silakan masukkan nama pemesan."
+            );
+
+            return;
+
+        }
+
+
+        if (!lantai) {
+
+            alert(
+                "Silakan pilih lantai / lokasi."
+            );
+
+            return;
+
+        }
+
+
+        if (!tanggalPesanan) {
+
+            alert(
+                "Silakan pilih tanggal pesanan."
+            );
+
+            return;
+
+        }
+
+
+        if (!jamPesanan) {
+
+            alert(
+                "Silakan pilih jam pesanan."
+            );
+
+            return;
+
+        }
+
+
+        let pesan =
+            "Halo, saya ingin memesan Gorengan Legend 1998.%0A%0A";
+
 
         pesan +=
+            "🧾 *DETAIL PESANAN*%0A";
 
-            `\n📝 *Catatan:*\n` +
+        pesan +=
+            "━━━━━━━━━━━━━━━━━━%0A";
 
-            `${catatan}\n`;
+
+        pesan +=
+            "👤 Nama: " +
+            encodeURIComponent(nama) +
+            "%0A";
+
+
+        pesan +=
+            "📍 Lokasi: " +
+            encodeURIComponent(lantai) +
+            "%0A";
+
+
+        pesan +=
+            "📅 Tanggal Pesanan: " +
+            encodeURIComponent(tanggalPesanan) +
+            "%0A";
+
+
+        pesan +=
+            "⏰ Jam Pesanan: " +
+            encodeURIComponent(jamPesanan) +
+            "%0A%0A";
+
+
+        pesan +=
+            "🍽️ *MENU PESANAN*%0A";
+
+
+        let total = 0;
+
+        let adaPesanan = false;
+
+
+        menu.forEach((item, index) => {
+
+            const jumlah = cart[index];
+
+
+            if (jumlah > 0) {
+
+                adaPesanan = true;
+
+                const subtotal =
+                    item.harga * jumlah;
+
+
+                total += subtotal;
+
+
+                pesan +=
+                    "• " +
+                    encodeURIComponent(item.nama) +
+                    " x" +
+                    jumlah +
+                    " = " +
+                    encodeURIComponent(
+                        rupiah(subtotal)
+                    ) +
+                    "%0A";
+
+            }
+
+        });
+
+
+        if (!adaPesanan) {
+
+            alert(
+                "Silakan pilih minimal satu menu."
+            );
+
+            return;
+
+        }
+
+
+        pesan +=
+            "%0A💰 *TOTAL: " +
+            encodeURIComponent(
+                rupiah(total)
+            ) +
+            "*%0A";
+
+
+        if (catatan) {
+
+            pesan +=
+                "%0A📝 Catatan: " +
+                encodeURIComponent(catatan);
+
+        }
+
+
+        pesan +=
+            "%0A%0A💳 Pembayaran dilakukan melalui QRIS.";
+
+
+        /*
+            GANTI NOMOR INI DENGAN NOMOR WHATSAPP
+            ADMIN / PENJUAL
+        */
+
+        const nomorWhatsApp =
+            "6281234567890";
+
+
+        const url =
+            "https://wa.me/" +
+            nomorWhatsApp +
+            "?text=" +
+            pesan;
+
+
+        window.open(
+            url,
+            "_blank"
+        );
 
     }
 
 
-    pesan +=
+    /* =========================================
+       JALANKAN
+    ========================================= */
 
-        `\nTerima kasih 🙏`;
+    tampilkanMenu();
 
+    updateCart();
 
+    tanggalSekarang();
 
-    /* =================================================
-       GANTI NOMOR WHATSAPP DI SINI
-    ================================================= */
-
-    const nomorWhatsApp =
-        "6282156476864";
-
-
-    const url =
-
-        `https://wa.me/${nomorWhatsApp}?text=` +
-
-        encodeURIComponent(pesan);
+    setTanggalMinimum();
 
 
-    window.open(
-        url,
-        "_blank"
+    /*
+       Update waktu otomatis setiap 1 menit
+    */
+
+    setInterval(
+        tanggalSekarang,
+        60000
     );
-
-}
-
-
-
-/* =====================================================
-   LOAD WEBSITE
-===================================================== */
-
-tampilkanMenu();
-
-tampilkanKeranjang();
 
 </script>
 
-
 </body>
-
 </html>
-```
-
