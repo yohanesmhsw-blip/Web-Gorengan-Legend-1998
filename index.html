@@ -162,15 +162,19 @@
         }
 
         .menu-image {
-            height: 110px;
+            height: 180px;
             border-radius: 14px;
             background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 52px;
+            overflow: hidden;
             margin-bottom: 17px;
         }
+
+.menu-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
         .menu-card h3 {
             color: var(--green);
@@ -642,7 +646,7 @@
     <div class="ba-card">
 
         <img
-            src="images/brand-ambassador.jpg"
+            src="images/foto_BA.jpg"
             alt="Brand Ambassador Gorengan Legend 1998"
         >
 
@@ -676,139 +680,139 @@
         {
             nama: "Risol Mayo",
             harga: 3000,
-            emoji: "🍌"
+            gambar: "images/Risol_Mayo.jpg"
         },
 
         {
             nama: "Pisang Goreng",
             harga: 2000,
-            emoji: "🍌"
+            gambar: "images/Pisang_Goreng.jpg"
         },
 
         {
             nama: "Bakwan",
             harga: 2000,
-            emoji: "🍌"
+            gambar: "images/Bakwan.jpg"
         },
 
         {
             nama: "Tahu Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Tahu_Goreng.jpg"
         },
 
         {
             nama: "Tempe Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Tempe_Goreng.jpg"
         },
 
         {
             nama: "Korket Bengkuang",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Korket.jpg"
         },
 
         {
             nama: "Korket Bihun",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Korket.jpg"
         },
 
         {
             nama: "Korket Ubi",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Korket.jpg"
         },
 
         {
             nama: "Ou'i",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Ou'i.jpg"
         },
 
         {
             nama: "Gandasturi",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Gandasturi.jpg"
         },
 
         {
             nama: "Tapai Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Tapai_Goreng.jpg"
         },
 
         {
             nama: "Ubi Rambat",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Ubi_Rambat.jpg"
         },
 
         {
             nama: "Sukun Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Sukun.jpg"
         },
 
         {
             nama: "Ubi Kayu Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Ubi_Goreng.jpg"
         },
 
         {
             nama: "Keladi Goreng",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Keladi_Goreng.jpg"
         },
 
         {
             nama: "Bom",
             harga: 2000,
-            emoji: "🥟"
+            gambar: "images/Bom.jpg"
         },
 
         {
             nama: "Pisang Goreng Keju Susu",
             harga: 10000,
-            emoji: "🍌"
+            gambar: "images/coming_soon.jpg"
         },
 
         {
             nama: "Pisang Goreng Coklat Susu",
             harga: 10000,
-            emoji: "🍌"
+            gambar: "images/coming_soon.jpg"
         },
 
         {
             nama: "Cucur",
             harga: 3000,
-            emoji: "🍌"
+            gambar: "images/Cucur.jpg"
         },
 
         {
             nama: "Roti Hock Kelapa",
             harga: 3000,
-            emoji: "🍌"
+            gambar: "images/Roti_Hock.jpg"
         },
 
         {
             nama: "Roti Hock Kacang ",
             harga: 3000,
-            emoji: "🍌"
+            gambar: "images/Roti_Hock.jpg"
         },
 
         {
             nama: "Talam Ebi",
             harga: 8000,
-            emoji: "🍌"
+            gambar: "images/Talam_Ebi.jpg"
         },
 
         {
             nama: "Chai Kue",
             harga: 8000,
-            emoji: "🍠"
+            gambar: "images/Chai_Kue.jpg"
         }
 
     ];
@@ -856,43 +860,46 @@
 
             container.innerHTML += `
 
-                <div class="menu-card">
+    <div class="menu-card">
 
-                    <div class="menu-image">
-                        ${item.emoji}
-                    </div>
+        <div class="menu-image">
+            <img
+                src="${item.gambar}"
+                alt="${item.nama}"
+            >
+        </div>
 
-                    <h3>
-                        ${item.nama}
-                    </h3>
+        <h3>
+            ${item.nama}
+        </h3>
 
-                    <div class="price">
-                        ${rupiah(item.harga)}
-                    </div>
+        <div class="price">
+            ${rupiah(item.harga)}
+        </div>
 
-                    <div class="quantity">
+        <div class="quantity">
 
-                        <button
-                            onclick="kurangi(${index})"
-                        >
-                            −
-                        </button>
+            <button
+                onclick="kurangi(${index})"
+            >
+                −
+            </button>
 
-                        <span id="jumlah-${index}">
-                            0
-                        </span>
+            <span id="jumlah-${index}">
+                0
+            </span>
 
-                        <button
-                            onclick="tambah(${index})"
-                        >
-                            +
-                        </button>
+            <button
+                onclick="tambah(${index})"
+            >
+                +
+            </button>
 
-                    </div>
+        </div>
 
-                </div>
+    </div>
 
-            `;
+`;
 
         });
 
@@ -1094,212 +1101,156 @@
 
     function kirimWhatsApp() {
 
-        const nama =
-            document.getElementById(
-                "nama"
-            ).value.trim();
+    const nama =
+        document.getElementById("nama").value.trim();
+
+    const lantai =
+        document.getElementById("lantai").value;
+
+    const tanggalPesanan =
+        document.getElementById("tanggalPesanan").value;
+
+    const jamPesanan =
+        document.getElementById("jamPesanan").value;
+
+    const catatan =
+        document.getElementById("catatan").value.trim();
 
 
-        const lantai =
-            document.getElementById(
-                "lantai"
-            ).value;
+    /* VALIDASI */
+
+    if (!nama) {
+        alert("Silakan masukkan nama pemesan.");
+        return;
+    }
+
+    if (!lantai) {
+        alert("Silakan pilih lantai / lokasi.");
+        return;
+    }
+
+    if (!tanggalPesanan) {
+        alert("Silakan pilih tanggal pesanan.");
+        return;
+    }
+
+    if (!jamPesanan) {
+        alert("Silakan pilih jam pesanan.");
+        return;
+    }
 
 
-        const tanggalPesanan =
-            document.getElementById(
-                "tanggalPesanan"
-            ).value;
+    let daftarPesanan = [];
+    let total = 0;
 
 
-        const jamPesanan =
-            document.getElementById(
-                "jamPesanan"
-            ).value;
+    /* AMBIL MENU */
 
+    menu.forEach((item, index) => {
 
-        const catatan =
-            document.getElementById(
-                "catatan"
-            ).value.trim();
+        const jumlah = cart[index];
 
+        if (jumlah > 0) {
 
-        /* VALIDASI */
+            const subtotal =
+                item.harga * jumlah;
 
-        if (!nama) {
+            total += subtotal;
 
-            alert(
-                "Silakan masukkan nama pemesan."
+            daftarPesanan.push(
+                item.nama +
+                " x" +
+                jumlah +
+                " = " +
+                rupiah(subtotal)
             );
 
-            return;
-
         }
 
+    });
 
-        if (!lantai) {
 
-            alert(
-                "Silakan pilih lantai / lokasi."
-            );
+    /* CEK PESANAN */
 
-            return;
+    if (daftarPesanan.length === 0) {
 
-        }
-
-
-        if (!tanggalPesanan) {
-
-            alert(
-                "Silakan pilih tanggal pesanan."
-            );
-
-            return;
-
-        }
-
-
-        if (!jamPesanan) {
-
-            alert(
-                "Silakan pilih jam pesanan."
-            );
-
-            return;
-
-        }
-
-
-        let pesan =
-            "Halo, saya ingin memesan Gorengan Legend 1998.%0A%0A";
-
-
-        pesan +=
-            "🧾 *DETAIL PESANAN*%0A";
-
-        pesan +=
-            "━━━━━━━━━━━━━━━━━━%0A";
-
-
-        pesan +=
-            "👤 Nama: " +
-            encodeURIComponent(nama) +
-            "%0A";
-
-
-        pesan +=
-            "📍 Lokasi: " +
-            encodeURIComponent(lantai) +
-            "%0A";
-
-
-        pesan +=
-            "📅 Tanggal Pesanan: " +
-            encodeURIComponent(tanggalPesanan) +
-            "%0A";
-
-
-        pesan +=
-            "⏰ Jam Pesanan: " +
-            encodeURIComponent(jamPesanan) +
-            "%0A%0A";
-
-
-        pesan +=
-            "🍽️ *MENU PESANAN*%0A";
-
-
-        let total = 0;
-
-        let adaPesanan = false;
-
-
-        menu.forEach((item, index) => {
-
-            const jumlah = cart[index];
-
-
-            if (jumlah > 0) {
-
-                adaPesanan = true;
-
-                const subtotal =
-                    item.harga * jumlah;
-
-
-                total += subtotal;
-
-
-                pesan +=
-                    "• " +
-                    encodeURIComponent(item.nama) +
-                    " x" +
-                    jumlah +
-                    " = " +
-                    encodeURIComponent(
-                        rupiah(subtotal)
-                    ) +
-                    "%0A";
-
-            }
-
-        });
-
-
-        if (!adaPesanan) {
-
-            alert(
-                "Silakan pilih minimal satu menu."
-            );
-
-            return;
-
-        }
-
-
-        pesan +=
-            "%0A💰 *TOTAL: " +
-            encodeURIComponent(
-                rupiah(total)
-            ) +
-            "*%0A";
-
-
-        if (catatan) {
-
-            pesan +=
-                "%0A📝 Catatan: " +
-                encodeURIComponent(catatan);
-
-        }
-
-
-        pesan +=
-            "%0A%0A💳 Pembayaran dilakukan melalui QRIS.";
-
-
-        /*
-            GANTI NOMOR INI DENGAN NOMOR WHATSAPP
-            ADMIN / PENJUAL
-        */
-
-        const nomorWhatsApp =
-            "6282156476864";
-
-
-        const url =
-            "https://wa.me/" +
-            nomorWhatsApp +
-            "?text=" +
-            pesan;
-
-
-        window.open(
-            url,
-            "_blank"
+        alert(
+            "Silakan pilih minimal satu menu."
         );
 
+        return;
+
     }
+
+
+    /* FORMAT TANGGAL */
+
+    const tanggalFormat =
+        new Date(
+            tanggalPesanan + "T00:00:00"
+        ).toLocaleDateString(
+            "id-ID",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+    /* BUAT PESAN WHATSAPP */
+
+    let pesan =
+`GORENGAN LEGEND 1998
+
+DETAIL PESANAN
+--------------------------------
+Nama          : ${nama}
+Lokasi        : ${lantai}
+Tanggal       : ${tanggalFormat}
+Jam Pesanan   : ${jamPesanan}
+
+MENU PESANAN
+--------------------------------
+${daftarPesanan.join("\n")}
+
+--------------------------------
+TOTAL         : ${rupiah(total)}
+
+Pembayaran dilakukan melalui QRIS.`;
+
+
+    /* CATATAN */
+
+    if (catatan) {
+
+        pesan +=
+`\n\nCatatan      : ${catatan}`;
+
+    }
+
+
+    /*
+        NOMOR WHATSAPP ADMIN
+    */
+
+    const nomorWhatsApp =
+        "6282156476864";
+
+
+    const url =
+        "https://wa.me/" +
+        nomorWhatsApp +
+        "?text=" +
+        encodeURIComponent(pesan);
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
 
 
     /* =========================================
