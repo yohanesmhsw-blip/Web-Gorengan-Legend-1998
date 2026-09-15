@@ -1229,26 +1229,66 @@ Pembayaran dilakukan melalui QRIS.`;
 
     }
 
+//     /*
+//     NOMOR WHATSAPP ADMIN
+// */
+
+// const nomorWhatsApp =
+//     "6282156476864";
+
+
+// const url =
+//     "https://wa.me/" +
+//     nomorWhatsApp +
+//     "?text=" +
+//     encodeURIComponent(pesan);
+
+
+// window.open(
+//     url,
+//     "_blank"
+// );
 
     /*
-        NOMOR WHATSAPP ADMIN
-    */
+    GRUP WHATSAPP
+*/
 
-    const nomorWhatsApp =
-        "6282156476864";
-
-
-    const url =
-        "https://wa.me/" +
-        nomorWhatsApp +
-        "?text=" +
-        encodeURIComponent(pesan);
+const linkGrupWhatsApp =
+    "https://chat.whatsapp.com/L1XoZsEAYhXF5wIJOjAuB7";
 
 
-    window.open(
-        url,
-        "_blank"
-    );
+/*
+    SALIN PESAN
+*/
+
+navigator.clipboard.writeText(pesan)
+    .then(() => {
+
+        alert(
+            "Detail pesanan sudah disalin.\n\n" +
+            "WhatsApp akan dibuka. " +
+            "Silakan masuk ke grup, lalu tekan Ctrl + V dan kirim."
+        );
+
+        window.open(
+            linkGrupWhatsApp,
+            "_blank"
+        );
+
+    })
+    .catch(() => {
+
+        alert(
+            "Gagal menyalin detail pesanan secara otomatis.\n\n" +
+            "Silakan salin pesanan secara manual."
+        );
+
+        window.open(
+            linkGrupWhatsApp,
+            "_blank"
+        );
+
+    });
 
 }
 
