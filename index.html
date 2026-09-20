@@ -52,7 +52,17 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 95px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
         }
 
         .logo-icon {
@@ -67,14 +77,9 @@
             font-size: 22px;
         }
 
-        .logo h1 {
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
-
         .logo span {
             display: block;
-            font-size: 11px;
+            font-size: 31px;
             color: #d8c99f;
             margin-top: 3px;
         }
@@ -391,12 +396,16 @@
         }
 
         .ba-card {
-            max-width: 700px;
+            max-width: 1000px;
             margin: auto;
             background: white;
             padding: 15px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         .ba-card img {
@@ -450,13 +459,14 @@
 <!-- HEADER -->
 <header>
     <div class="navbar">
-
-        <div class="logo">
-            <div class="logo-icon">🥟</div>
+            <div class="logo">
+                <img src="images/Bakwan.jpg" alt="Bakwan">
+                    <span>Gorengan Legend 1998</span>
+        </div>
+</div>
 
             <div>
-                <h1>Gorengan Legend 1998</h1>
-                <span>Rasa Legend, Harga Bersahabat</span>
+                
             </div>
         </div>
 
@@ -644,13 +654,16 @@
     </p>
 
     <div class="ba-card">
+    <img
+        src="images/foto_BA.jpg"
+        alt="Brand Ambassador 1"
+    >
 
-        <img
-            src="images/foto_BA.jpg"
-            alt="Brand Ambassador Gorengan Legend 1998"
-        >
-
-    </div>
+    <img
+        src="images/foto_BA1.jpg"
+        alt="Brand Ambassador 2"
+    >
+</div>
 
 </section>
 
@@ -757,7 +770,7 @@
 
         {
             nama: "Ubi Kayu Goreng",
-            harga: 2000,
+            harga: 3000,
             gambar: "images/Ubi_Goreng.jpg"
         },
 
