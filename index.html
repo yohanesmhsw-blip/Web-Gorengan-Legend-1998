@@ -1,1609 +1,2056 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gorengan Legend 1998</title>
-    
-    <style>
+        <title>Gorengan Legend 1998</title>
+        
+        <style>
 
-                /* ================================
-        FLOATING CART
-        ================================ */
+                    /* ================================
+            FLOATING CART
+            ================================ */
 
-        .floating-cart {
-            position: fixed;
-            bottom: 22px;
-            right: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 210px;
-            background: var(--green);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(23, 63, 43, 0.25);
-            cursor: pointer;
-            z-index: 9999;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
+            .floating-cart {
+                position: fixed;
+                bottom: 22px;
+                right: 24px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                min-width: 210px;
+                background: var(--green);
+                color: white;
+                padding: 12px 16px;
+                border-radius: 18px;
+                box-shadow: 0 10px 30px rgba(23, 63, 43, 0.25);
+                cursor: pointer;
+                z-index: 9999;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+            }
 
-        .floating-cart:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(23, 63, 43, 0.32);
-        }
+            .floating-cart:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 15px 35px rgba(23, 63, 43, 0.32);
+            }
 
-        .floating-cart:active {
-            transform: translateY(-1px);
-        }
+            .floating-cart:active {
+                transform: translateY(-1px);
+            }
 
-        .floating-cart-icon {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            font-size: 21px;
-            flex-shrink: 0;
-        }
+            .floating-cart.cart-updated {
+                animation: cartPulse 0.35s ease;
+            }
 
-        .floating-cart-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex: 1;
-        }
+            @keyframes cartPulse {
+                0% {
+                    transform: scale(1);
+                }
 
-        .floating-cart-info span {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.78);
-        }
+                50% {
+                    transform: scale(1.04);
+                }
 
-        .floating-cart-info strong {
-            font-size: 16px;
-            color: #ffffff;
-        }
+                100% {
+                    transform: scale(1);
+                }
+            }
 
-        .floating-cart-arrow {
-            font-size: 20px;
-            color: #d8c99f;
-            transition: transform 0.25s ease;
-        }
+            .floating-cart-icon {
+                width: 42px;
+                height: 42px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.12);
+                border-radius: 12px;
+                font-size: 21px;
+                flex-shrink: 0;
+            }
 
-        .floating-cart:hover .floating-cart-arrow {
-            transform: translateX(4px);
-        }
-
-        @media (max-width: 600px) {
-
-            .floating-cart-info strong {
-                font-size: 15px;
+            .floating-cart-info {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                flex: 1;
             }
 
             .floating-cart-info span {
-                font-size: 11px;
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.78);
+            }
+
+            .floating-cart-info strong {
+                font-size: 16px;
+                color: #ffffff;
             }
 
             .floating-cart-arrow {
-                font-size: 18px;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --cream: #f6f0df;
-            --cream-dark: #e9dfc7;
-            --white: #ffffff;
-            --green: #173f2b;
-            --green-light: #2f6548;
-            --gold: #c5a45d;
-            --text: #26352d;
-            --gray: #6f776f;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--cream);
-            color: var(--text);
-        }
-
-        /* HEADER */
-        header {
-            background: var(--green);
-            color: white;
-            padding: 18px 7%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .logo img {
-            width: 95px;
-            height: 75px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .logo span {
-            display: block;
-            font-size: 31px;
-            color: #d8c99f;
-            margin-top: 3px;
-        }
-
-        /* HERO */
-        .hero {
-            background:
-                linear-gradient(
-                    rgba(23,63,43,0.92),
-                    rgba(23,63,43,0.92)
-                ),
-                url("images/brand-ambassador.jpg");
-
-            background-size: cover;
-            background-position: center;
-
-            color: white;
-            padding: 75px 20px;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.7;
-            color: #e9e2cf;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 18px;
-            border: 1px solid #cbb77c;
-            border-radius: 30px;
-            color: #e4d39c;
-            font-size: 13px;
-        }
-
-        /* MAIN */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 45px auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            color: var(--green);
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-        }
-
-        /* MENU */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .menu-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 14px;
-            border: 1px solid #e8dfcb;
-            box-shadow: 0 6px 20px rgba(23, 63, 43, 0.08);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 14px 30px rgba(23, 63, 43, 0.15);
-            border-color: #d8c99f;
-        }
-
-        .menu-image {
-            height: 190px;
-            border-radius: 16px;
-            background: var(--cream);
-            overflow: hidden;
-            margin-bottom: 17px;
-            position: relative;
-        }
-
-        .menu-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .menu-card:hover .menu-image img {
-            transform: scale(1.05);
-        }
-
-        .menu-card h3 {
-            color: var(--green);
-            font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 6px;
-        }
-
-        .price {
-            color: var(--green-light);
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 14px;
-        }
-
-        .quantity {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f8f3e7;
-            padding: 6px;
-            border-radius: 12px;
-            border: 1px solid #eee5d3;
-        }
-
-        .quantity button {
-            border: none;
-            background: var(--green);
-            color: white;
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-
-        .quantity button:hover {
-            background: var(--green-light);
-            transform: scale(1.05);
-        }
-
-        .quantity button:active {
-            transform: scale(0.95);
-        }
-
-        .quantity span {
-            min-width: 30px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 16px;
-            color: var(--green);
-        }
-
-        /* ORDER */
-        .order-section {
-            margin-top: 50px;
-            display: grid;
-            grid-template-columns: 1.3fr 0.7fr;
-            gap: 25px;
-            align-items: start;
-        }
-
-        .box {
-            background: white;
-            border-radius: 20px;
-            padding: 28px;
-            box-shadow: 0 5px 20px rgba(30,50,40,0.08);
-            border: 1px solid #e8dfcb;
-        }
-
-        .box h2 {
-            color: var(--green);
-            margin-bottom: 22px;
-        }
-
-        /* FORM */
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--green);
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #d9d2c0;
-            border-radius: 10px;
-            outline: none;
-            font-size: 14px;
-            background: #fffdf8;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: var(--green);
-        }
-
-        textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-
-        /* DATE INFO */
-        .date-info {
-            background: var(--cream);
-            border-left: 4px solid var(--green);
-            padding: 14px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .date-info strong {
-            color: var(--green);
-        }
-
-        /* CART */
-        .cart {
-            background: var(--cream);
-            border-radius: 14px;
-            padding: 17px;
-            margin-bottom: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 9px 0;
-            border-bottom: 1px solid #ded6c4;
-            font-size: 14px;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .empty-cart {
-            color: var(--gray);
-            text-align: center;
-            padding: 15px;
-        }
-
-        .cart-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 12px;
-            padding-top: 14px;
-            border-top: 1px solid #d8cfbb;
-        }
-
-        .cart-summary span {
-            font-size: 14px;
-            color: var(--gray);
-            font-weight: bold;
-        }
-
-        .cart-summary strong {
-            font-size: 18px;
-            color: var(--green);
-        }
-
-        /* WHATSAPP */
-        .whatsapp-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            background: var(--green);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .whatsapp-btn:hover {
-            background: var(--green-light);
-            transform: translateY(-2px);
-        }
-
-        /* QRIS */
-        .qris-box {
-            text-align: center;
-        }
-
-        .qris-box h2 {
-            margin-bottom: 8px;
-        }
-
-        .qris-box p {
-            font-size: 13px;
-            color: var(--gray);
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .qris-image {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 15px;
-            border: 8px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-        }
-
-        .payment-note {
-            margin-top: 15px;
-            padding: 12px;
-            background: var(--cream);
-            border-radius: 10px;
-            font-size: 13px;
-            color: var(--green);
-        }
-
-        /* BRAND AMBASSADOR */
-        .brand-section {
-            margin-top: 70px;
-            background: var(--green);
-            padding: 55px 20px;
-            color: white;
-            text-align: center;
-        }
-
-        .brand-section h2 {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .brand-section p {
-            color: #d9dfd9;
-            margin-bottom: 30px;
-        }
-
-        .ba-card {
-            max-width: 1000px;
-            margin: auto;
-            background: white;
-            padding: 15px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .ba-card img {
-            width: 100%;
-            max-height: 500px;
-            object-fit: cover;
-            border-radius: 14px;
-            display: block;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #102d20;
-            color: #cfd7d1;
-            text-align: center;
-            padding: 25px 15px;
-            font-size: 13px;
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        /* MOBILE */
-        @media (max-width: 800px) {
-            .order-section {
-                grid-template-columns: 1fr;
+                font-size: 20px;
+                color: #d8c99f;
+                transition: transform 0.25s ease;
             }
 
-            .hero h2 {
-                font-size: 32px;
+            .floating-cart:hover .floating-cart-arrow {
+                transform: translateX(4px);
             }
 
-            .container {
-                width: 92%;
+            @media (max-width: 600px) {
+
+                .floating-cart-info strong {
+                    font-size: 15px;
+                }
+
+                .floating-cart-info span {
+                    font-size: 11px;
+                }
+
+                .floating-cart-arrow {
+                    font-size: 18px;
+                }
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --cream: #f6f0df;
+                --cream-dark: #e9dfc7;
+                --white: #ffffff;
+                --green: #173f2b;
+                --green-light: #2f6548;
+                --gold: #c5a45d;
+                --text: #26352d;
+                --gray: #6f776f;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background: var(--cream);
+                color: var(--text);
+            }
+
+            /* HEADER */
+            header {
+                background: var(--green);
+                color: white;
+                padding: 18px 7%;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.15);
             }
 
             .navbar {
+                max-width: 1200px;
+                margin: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
                 gap: 10px;
+                font-size: 20px;
+                font-weight: bold;
             }
 
-            .logo h1 {
+            .logo img {
+                width: 95px;
+                height: 75px;
+                border-radius: 50%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .logo span {
+                display: block;
+                font-size: 31px;
+                color: #d8c99f;
+                margin-top: 3px;
+            }
+
+            /* HERO */
+            .hero {
+                background:
+                    linear-gradient(
+                        rgba(23,63,43,0.92),
+                        rgba(23,63,43,0.92)
+                    ),
+                    url("images/brand-ambassador.jpg");
+
+                background-size: cover;
+                background-position: center;
+
+                color: white;
+                padding: 75px 20px;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 42px;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                max-width: 650px;
+                margin: auto;
+                line-height: 1.7;
+                color: #e9e2cf;
+            }
+
+            .hero-badge {
+                display: inline-block;
+                margin-bottom: 20px;
+                padding: 8px 18px;
+                border: 1px solid #cbb77c;
+                border-radius: 30px;
+                color: #e4d39c;
+                font-size: 13px;
+            }
+
+            /* MAIN */
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 45px auto;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .section-title h2 {
+                color: var(--green);
+                font-size: 30px;
+                margin-bottom: 8px;
+            }
+
+            .section-title p {
+                color: var(--gray);
+            }
+
+            /* MENU */
+            .menu-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+            }
+
+            .menu-card {
+                background: var(--white);
+                border-radius: 20px;
+                padding: 14px;
+                border: 1px solid #e8dfcb;
+                box-shadow: 0 6px 20px rgba(23, 63, 43, 0.08);
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+
+            /* ANIMASI MENU */
+            .menu-card {
+                animation: menuFadeIn 0.6s ease both;
+            }
+
+            @keyframes menuFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .menu-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 14px 30px rgba(23, 63, 43, 0.15);
+                border-color: #d8c99f;
+            }
+
+            .menu-image {
+                height: 190px;
+                border-radius: 16px;
+                background: var(--cream);
+                overflow: hidden;
+                margin-bottom: 17px;
+                position: relative;
+            }
+
+            .menu-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.4s ease;
+            }
+
+            .menu-card:hover .menu-image img {
+                transform: scale(1.05);
+            }
+
+            .menu-card h3 {
+                color: var(--green);
+                font-size: 18px;
+                line-height: 1.4;
+                margin-bottom: 6px;
+            }
+
+            .price {
+                color: var(--green-light);
                 font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 14px;
             }
+
+            .quantity {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #f8f3e7;
+                padding: 6px;
+                border-radius: 12px;
+                border: 1px solid #eee5d3;
+            }
+
+            .quantity button {
+                border: none;
+                background: var(--green);
+                color: white;
+                width: 34px;
+                height: 34px;
+                border-radius: 9px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+                transition: all 0.2s ease;
+            }
+
+            .quantity button:hover {
+                background: var(--green-light);
+                transform: scale(1.05);
+            }
+
+            .quantity button:active {
+                transform: scale(0.95);
+            }
+
+            .quantity button:focus {
+                outline: 2px solid var(--gold);
+                outline-offset: 2px;
+            }
+
+            .quantity span {
+                min-width: 30px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 16px;
+                color: var(--green);
+            }
+
+            /* ORDER */
+            .order-section {
+                margin-top: 50px;
+                display: grid;
+                grid-template-columns: 1.3fr 0.7fr;
+                gap: 25px;
+                align-items: start;
+            }
+
+            .box {
+                background: white;
+                border-radius: 20px;
+                padding: 28px;
+                box-shadow: 0 5px 20px rgba(30,50,40,0.08);
+                border: 1px solid #e8dfcb;
+            }
+
+            .box h2 {
+                color: var(--green);
+                margin-bottom: 22px;
+            }
+
+            .order-header {
+                margin-bottom: 22px;
+            }
+
+            .order-header h2 {
+                margin-bottom: 5px;
+            }
+
+            .order-header p {
+                color: var(--gray);
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            /* FORM */
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 7px;
+                font-size: 14px;
+                font-weight: bold;
+                color: var(--green);
+            }
+
+            .required {
+                color: #b34a3a;
+                font-weight: bold;
+            }
+
+            .optional {
+                color: var(--gray);
+                font-size: 11px;
+                font-weight: normal;
+                margin-left: 4px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 13px 14px;
+                border: 1px solid #d9d2c0;
+                border-radius: 11px;
+                outline: none;
+                font-size: 14px;
+                background: #fffdf8;
+                color: var(--text);
+                transition: all 0.2s ease;
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: #9a9f98;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                border-color: var(--green);
+                box-shadow: 0 0 0 3px rgba(23, 63, 43, 0.08);
+                background: #ffffff;
+            }
+
+            select {
+                cursor: pointer;
+            }
+
+            textarea {
+                min-height: 90px;
+                resize: vertical;
+            }
+
+            /* DATE INFO */
+            .date-info {
+                background: linear-gradient(
+                    135deg,
+                    #f8f3e7,
+                    #f2ead8
+                );
+                border: 1px solid #e4dac2;
+                border-left: 4px solid var(--green);
+                padding: 16px;
+                border-radius: 12px;
+                margin-bottom: 22px;
+            }
+
+            .date-info-title {
+                color: var(--green);
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 12px;
+            }
+
+            .date-info-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+                padding: 7px 0;
+                border-top: 1px solid rgba(23, 63, 43, 0.08);
+            }
+
+            .date-info-row span {
+                color: var(--gray);
+                font-size: 13px;
+            }
+
+            .date-info-row strong {
+                color: var(--green);
+                font-size: 13px;
+                text-align: right;
+            }
+
+            /* CART */
+            .cart {
+                background: var(--cream);
+                border-radius: 14px;
+                padding: 17px;
+                margin-bottom: 20px;
+            }
+
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                padding: 9px 0;
+                border-bottom: 1px solid #ded6c4;
+                font-size: 14px;
+            }
+
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+
+            .empty-cart {
+                color: var(--gray);
+                text-align: center;
+                padding: 15px;
+            }
+
+            .cart-summary {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 12px;
+                padding-top: 14px;
+                border-top: 1px solid #d8cfbb;
+            }
+
+            .cart-summary span {
+                font-size: 14px;
+                color: var(--gray);
+                font-weight: bold;
+            }
+
+            .cart-summary strong {
+                font-size: 18px;
+                color: var(--green);
+            }
+
+            /* WHATSAPP */
+            .whatsapp-btn {
+                width: 100%;
+                padding: 16px;
+                border: none;
+                border-radius: 13px;
+                background: var(--green);
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                box-shadow: 0 6px 15px rgba(23, 63, 43, 0.18);
+            }
+
+            .whatsapp-info {
+                margin-top: 10px;
+                text-align: center;
+                color: var(--gray);
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .whatsapp-btn:hover {
+                background: var(--green-light);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 22px rgba(23, 63, 43, 0.25);
+            }
+
+            .whatsapp-btn:active {
+                transform: translateY(-1px);
+                box-shadow: 0 5px 12px rgba(23, 63, 43, 0.18);
+            }
+
+            /* QRIS */
+            .qris-box {
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .qris-box::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: var(--gold);
+            }
+
+            .qris-box h2 {
+                color: var(--green);
+                margin-bottom: 8px;
+            }
+
+            .qris-box p {
+                font-size: 13px;
+                color: var(--gray);
+                margin-bottom: 18px;
+                line-height: 1.5;
+            }
+
+            .qris-label {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 12px;
+                padding: 7px 14px;
+                border-radius: 30px;
+                background: var(--cream);
+                border: 1px solid #dfd3b9;
+            }
+
+            .qris-label span {
+                color: var(--green);
+                font-size: 11px;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+
+            .qris-image {
+                width: 100%;
+                max-width: 280px;
+                border-radius: 15px;
+                border: 8px solid white;
+                box-shadow: 0 8px 25px rgba(23, 63, 43, 0.15);
+                display: block;
+                margin: 0 auto;
+            }
+
+            .payment-note {
+                margin-top: 18px;
+                padding: 13px 15px;
+                background: var(--cream);
+                border: 1px solid #e5dbc6;
+                border-radius: 11px;
+                font-size: 13px;
+                color: var(--green);
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            /* BRAND AMBASSADOR */
+            .brand-section {
+                margin-top: 70px;
+                background:
+                    linear-gradient(
+                        rgba(23, 63, 43, 0.97),
+                        rgba(23, 63, 43, 0.97)
+                    );
+                padding: 70px 20px;
+                color: white;
+                text-align: center;
+            }
+
+            .brand-section h2 {
+                font-size: 30px;
+                margin-bottom: 12px;
+                color: #f4ead0;
+            }
+
+            .brand-section h2::after {
+                content: "";
+                display: block;
+                width: 55px;
+                height: 2px;
+                background: var(--gold);
+                margin: 12px auto 0;
+                border-radius: 2px;
+            }
+
+            .brand-section p {
+                color: #d9dfd9;
+                margin-bottom: 35px;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .ba-card {
+                max-width: 1000px;
+                margin: auto;
+                background: #fdfbf5;
+                padding: 16px;
+                border-radius: 22px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
+
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .ba-card img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 16px;
+                display: block;
+                transition: transform 0.3s ease;
+            }
+
+            .ba-card img:hover {
+                transform: scale(1.02);
+            }
+
+            /* FOOTER */
+            footer {
+                background: #102d20;
+                color: #cfd7d1;
+                text-align: center;
+                padding: 35px 20px;
+                font-size: 13px;
+                border-top: 1px solid rgba(197, 164, 93, 0.25);
+            }
+
+            footer .footer-brand {
+                color: #f4ead0;
+                font-size: 17px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+
+            footer .footer-tagline {
+                color: #bfc9c2;
+                font-size: 12px;
+                margin-bottom: 18px;
+            }
+
+            footer .footer-line {
+                width: 45px;
+                height: 2px;
+                background: var(--gold);
+                margin: 0 auto 18px;
+                border-radius: 2px;
+            }
+
+            footer .footer-copy {
+                color: #8f9b94;
+                font-size: 11px;
+            }
+
+            /* MOBILE & TABLET */
+    @media (max-width: 800px) {
+
+        /* HEADER */
+        header {
+            padding: 14px 5%;
         }
-    </style>
-    
-</head>
 
-<body>
+        .navbar {
+            justify-content: center;
+        }
 
-<!-- HEADER -->
-<header>
+        .logo {
+            gap: 8px;
+        }
 
-    <div class="navbar">
+        .logo img {
+            width: 62px;
+            height: 52px;
+        }
 
-        <div class="logo">
-            <img src="images/Bakwan.jpg" alt="Bakwan">
-            <span>Gorengan Legend 1998</span>
+        .logo span {
+            font-size: 21px;
+        }
+
+
+        /* HERO */
+        .hero {
+            padding: 60px 20px;
+        }
+
+        .hero-badge {
+            font-size: 11px;
+            padding: 7px 14px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* MAIN */
+        .container {
+            width: 92%;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 26px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+        }
+
+
+        /* MENU */
+        .menu-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .menu-card {
+            padding: 10px;
+            border-radius: 16px;
+        }
+
+        .menu-image {
+            height: 135px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .menu-card h3 {
+            font-size: 15px;
+        }
+
+        .price {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .quantity {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        .quantity span {
+            font-size: 14px;
+            min-width: 25px;
+        }
+
+
+        /* ORDER */
+        .order-section {
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .box {
+            padding: 20px;
+            border-radius: 17px;
+        }
+
+        .box h2 {
+            font-size: 21px;
+        }
+
+        .order-header p {
+            font-size: 12px;
+        }
+
+
+        /* FORM */
+        input,
+        select,
+        textarea {
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+
+        /* QRIS */
+        .qris-image {
+            max-width: 250px;
+        }
+
+
+        /* BRAND AMBASSADOR */
+        .brand-section {
+            margin-top: 50px;
+            padding: 50px 15px;
+        }
+
+        .brand-section h2 {
+            font-size: 25px;
+        }
+
+        .brand-section p {
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .ba-card {
+            grid-template-columns: 1fr;
+            padding: 10px;
+            gap: 10px;
+            border-radius: 18px;
+        }
+
+        .ba-card img {
+            height: 260px;
+            border-radius: 13px;
+        }
+
+
+        /* FLOATING CART */
+        .floating-cart {
+            right: 14px;
+            bottom: 14px;
+            min-width: 185px;
+            padding: 10px 12px;
+            border-radius: 15px;
+            gap: 9px;
+        }
+
+        .floating-cart-icon {
+            width: 38px;
+            height: 38px;
+            font-size: 18px;
+        }
+
+        .floating-cart-info strong {
+            font-size: 14px;
+        }
+
+        .floating-cart-info span {
+            font-size: 10px;
+        }
+
+        .floating-cart-arrow {
+            font-size: 17px;
+        }
+
+
+        /* FOOTER */
+        footer {
+            padding: 30px 15px;
+        }
+
+        footer .footer-brand {
+            font-size: 16px;
+        }
+
+        footer .footer-tagline {
+            font-size: 11px;
+        }
+
+        footer .footer-copy {
+            font-size: 10px;
+        }
+
+    }
+        </style>
+        
+    </head>
+
+    <body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="navbar">
+
+            <div class="logo">
+                <img src="images/Bakwan.jpg" alt="Bakwan">
+                <span>Gorengan Legend 1998</span>
+            </div>
+
         </div>
 
-    </div>
-
-</header>
+    </header>
 
 
-<!-- HERO -->
-<section class="hero">
+    <!-- HERO -->
+    <section class="hero">
 
-    <div class="hero-badge">
-        ✦ GORENGAN LEGEND 1998 ✦
-    </div>
+        <div class="hero-badge">
+            ✦ GORENGAN LEGEND 1998 ✦
+        </div>
 
-    <h2>Gorengan Hangat,<br>Rasa yang Selalu Diingat</h2>
+        <h2>Gorengan Hangat,<br>Rasa yang Selalu Diingat</h2>
 
-    <p>
-        Pesan gorengan favoritmu dengan mudah.
-        Pilih menu, tentukan tanggal dan waktu pesanan,
-        lalu kirim pesanan langsung melalui WhatsApp.
-    </p>
+        <p>
+            Pesan gorengan favoritmu dengan mudah.
+            Pilih menu, tentukan tanggal dan waktu pesanan,
+            lalu kirim pesanan langsung melalui WhatsApp.
+        </p>
 
-</section>
-
-
-<!-- MENU -->
-<div class="container">
-
-    <div class="section-title">
-        <h2>Menu Gorengan</h2>
-        <p>Pilih gorengan favorit kamu</p>
-    </div>
-
-    <div class="menu-grid" id="menuContainer"></div>
+    </section>
 
 
-    <!-- ORDER AREA -->
-    <div class="order-section">
+    <!-- MENU -->
+    <div class="container">
 
-        <!-- FORM -->
-        <div class="box">
+        <div class="section-title">
+            <h2>Menu Gorengan</h2>
+            <p>Pilih gorengan favorit kamu</p>
+        </div>
 
-            <h2>🧾 Detail Pemesanan</h2>
+        <div class="menu-grid" id="menuContainer"></div>
 
-            <!-- TANGGAL PEMESANAN OTOMATIS -->
-            <div class="date-info">
+
+        <!-- ORDER AREA -->
+        <div class="order-section">
+
+            <!-- FORM -->
+            <div class="box">
+
+                <div class="order-header">
                 <div>
-                    <strong>Tanggal Pemesanan:</strong>
-                    <span id="tanggalPemesanan"></span>
-                </div>
-
-                <div style="margin-top:5px;">
-                    <strong>Waktu Pemesanan:</strong>
-                    <span id="waktuPemesanan"></span>
+                    <h2>🧾 Detail Pemesanan</h2>
+                    <p>Lengkapi data berikut sebelum mengirim pesanan.</p>
                 </div>
             </div>
 
+                <!-- TANGGAL PEMESANAN OTOMATIS -->
+                <div class="date-info">
 
-            <div class="form-group">
-                <label>Nama Pemesan</label>
-
-                <input
-                    type="text"
-                    id="nama"
-                    placeholder="Masukkan nama kamu"
-                >
-            </div>
-
-
-            <div class="form-group">
-                <label>Lantai / Lokasi</label>
-
-                <select id="lantai">
-                    <option value="">-- Pilih lokasi --</option>
-                    <option>Lantai 1</option>
-                    <option>Lantai 2A</option>
-                    <option>Lantai 2B</option>
-                    <option>Lantai 3</option>
-                    <option>Antar ke Lokasi</option>
-                    <option>Lainnya</option>
-                </select>
-            </div>
-
-
-            <!-- TANGGAL PESANAN -->
-            <div class="form-group">
-
-                <label>Tanggal Pesanan</label>
-
-                <input
-                    type="date"
-                    id="tanggalPesanan"
-                >
-
-            </div>
-
-
-            <!-- JAM PESANAN -->
-            <div class="form-group">
-
-                <label>Jam Pesanan</label>
-
-                <input
-                    type="time"
-                    id="jamPesanan"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>Catatan / Keterangan</label>
-
-                <textarea
-                    id="catatan"
-                    placeholder="Contoh: tidak terlalu pedas, antar ke meja, dll."
-                ></textarea>
-
-            </div>
-
-
-            <!-- CART -->
-            <div class="cart">
-
-            <div id="cartItems">
-                <div class="empty-cart">
-                    Belum ada pesanan
+                <div class="date-info-title">
+                    🕒 Waktu Pemesanan
                 </div>
+
+                <div class="date-info-row">
+                    <span>Tanggal</span>
+                    <strong id="tanggalPemesanan"></strong>
+                </div>
+
+                <div class="date-info-row">
+                    <span>Waktu</span>
+                    <strong id="waktuPemesanan"></strong>
+                </div>
+
             </div>
 
-            <div class="cart-summary">
-                <span>Total Pesanan</span>
-                <strong id="cartTotal">Rp0</strong>
+
+                <div class="form-group">
+                    <label>
+                        Nama Pemesan <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        placeholder="Masukkan nama kamu"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Lantai / Lokasi <span class="required">*</span></label>
+
+                    <select id="lantai">
+                        <option value="">-- Pilih lokasi --</option>
+                        <option>Lantai 1</option>
+                        <option>Lantai 2A</option>
+                        <option>Lantai 2B</option>
+                        <option>Lantai 3</option>
+                        <option>Antar ke Lokasi</option>
+                        <option>Lainnya</option>
+                    </select>
+                </div>
+
+
+                <!-- TANGGAL PESANAN -->
+                <div class="form-group">
+
+                    <label>Tanggal Pesanan <span class="required">*</span></label>
+
+                    <input
+                        type="date"
+                        id="tanggalPesanan"
+                    >
+
+                </div>
+
+
+                <!-- JAM PESANAN -->
+                <div class="form-group">
+
+                    <label>Jam Pesanan <span class="required">*</span></label>
+
+                    <input
+                        type="time"
+                        id="jamPesanan"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Catatan / Keterangan<span class="optional">(Opsional)</span></label>
+
+                    <textarea
+                        id="catatan"
+                        placeholder="Contoh: tidak terlalu pedas, antar ke meja, dll."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- CART -->
+                <div class="cart">
+
+                <div id="cartItems">
+                    <div class="empty-cart">
+                        Belum ada pesanan
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <span>Total Pesanan</span>
+                    <strong id="cartTotal">Rp0</strong>
+                </div>
+
             </div>
 
-        </div>
+
+                <button
+                    class="whatsapp-btn"
+                    onclick="kirimWhatsApp()"
+                >
+                    📱 Pesan via WhatsApp
+                </button>
+
+                <p class="whatsapp-info">
+                    Pesanan akan disalin dan WhatsApp akan dibuka untuk dikirim ke grup.
+                </p>
+
+            </div>
 
 
-            <button
-                class="whatsapp-btn"
-                onclick="kirimWhatsApp()"
-            >
-                📱 Pesan via WhatsApp
-            </button>
+            <!-- QRIS -->
+            <div class="box qris-box">
 
-        </div>
+                <h2>💳 Pembayaran QRIS</h2>
 
+                <p>
+                    Silakan lakukan pembayaran menggunakan QRIS
+                    setelah melakukan pemesanan.
+                </p>
 
-        <!-- QRIS -->
-        <div class="box qris-box">
+                <div class="qris-label">
+                    <span>SCAN UNTUK MEMBAYAR</span>
+                </div>
 
-            <h2>💳 Pembayaran QRIS</h2>
+                <img
+                    src="images/qris gorengan legend 1998.png"
+                    alt="QRIS Gorengan Legend 1998"
+                    class="qris-image"
+                >
 
-            <p>
-                Silakan lakukan pembayaran menggunakan QRIS
-                setelah melakukan pemesanan.
-            </p>
+                <div class="payment-note">
+                    📌 Setelah pembayaran, simpan bukti pembayaran
+                    dan kirimkan melalui WhatsApp.
+                </div>
 
-            <img
-                src="images/qris gorengan legend 1998.png"
-                alt="QRIS Gorengan Legend 1998"
-                class="qris-image"
-            >
-
-            <div class="payment-note">
-                📌 Setelah pembayaran, simpan bukti pembayaran
-                dan kirimkan melalui WhatsApp.
             </div>
 
         </div>
 
     </div>
 
-</div>
 
+    <!-- BRAND AMBASSADOR -->
+    <section class="brand-section">
 
-<!-- BRAND AMBASSADOR -->
-<section class="brand-section">
+        <h2>⭐ Brand Ambassador</h2>
 
-    <h2>⭐ Brand Ambassador</h2>
+        <p>
+            Mengenal lebih dekat sosok di balik Gorengan Legend 1998
+        </p>
 
-    <p>
-        Kenalan dengan wajah di balik Gorengan Legend 1998
-    </p>
+        <div class="ba-card">
+        <img
+            src="images/foto_BA.jpg"
+            alt="Brand Ambassador 1"
+        >
 
-    <div class="ba-card">
-    <img
-        src="images/foto_BA.jpg"
-        alt="Brand Ambassador 1"
+        <img
+            src="images/foto_BA2.jpg"
+            alt="Brand Ambassador 2"
+        >
+    </div>
+
+    </section>
+
+    <!-- FLOATING CART -->
+    <div
+        class="floating-cart"
+        onclick="scrollToCart()"
     >
 
-    <img
-        src="images/foto_BA2.jpg"
-        height="75%"
-        alt="Brand Ambassador 2"
-    >
-</div>
+        <div class="floating-cart-icon">
+            🛒
+        </div>
 
-</section>
+        <div class="floating-cart-info">
 
-<!-- FLOATING CART -->
-<div
-    class="floating-cart"
-    onclick="scrollToCart()"
->
+            <span id="floatingCartCount">
+                0 item
+            </span>
 
-    <div class="floating-cart-icon">
-        🛒
-    </div>
+            <strong id="floatingCartTotal">
+                Rp0
+            </strong>
 
-    <div class="floating-cart-info">
+        </div>
 
-        <span id="floatingCartCount">
-            0 item
-        </span>
-
-        <strong id="floatingCartTotal">
-            Rp0
-        </strong>
+        <div class="floating-cart-arrow">
+            →
+        </div>
 
     </div>
 
-    <div class="floating-cart-arrow">
-        →
-    </div>
+    <!-- FOOTER -->
+    <footer>
 
-</div>
+        <div class="footer-brand">
+            Gorengan Legend 1998
+        </div>
 
-<!-- FOOTER -->
-<footer>
+        <div class="footer-tagline">
+            Rasa Legend • Dibuat dengan Sepenuh Hati
+        </div>
 
-    <p>
-        © 2026 <strong>Gorengan Legend 1998</strong>
-    </p>
+        <div class="footer-line"></div>
 
-    <p style="margin-top:6px;">
-        Rasa Legend • Dibuat dengan Sepenuh Hati
-    </p>
+        <div class="footer-copy">
+            © 2026 Gorengan Legend 1998 • All Rights Reserved
+        </div>
 
-</footer>
-
-
-<script>
-
-    /* =========================================
-       DATA MENU
-    ========================================= */
-
-    const menu = [
-
-        {
-            nama: "Risol Mayo",
-            harga: 3000,
-            gambar: "images/Risol_Mayo.jpg"
-        },
-
-        {
-            nama: "Pisang Goreng",
-            harga: 2000,
-            gambar: "images/Pisang_Goreng.jpg"
-        },
-
-        {
-            nama: "Bakwan",
-            harga: 2000,
-            gambar: "images/Bakwan.jpg"
-        },
-
-        {
-            nama: "Tahu Goreng",
-            harga: 2000,
-            gambar: "images/Tahu_Goreng.jpg"
-        },
-
-        {
-            nama: "Tempe Goreng",
-            harga: 2000,
-            gambar: "images/Tempe_Goreng.jpg"
-        },
-
-        {
-            nama: "Korket Bengkuang",
-            harga: 2000,
-            gambar: "images/Korket.jpg"
-        },
-
-        {
-            nama: "Korket Bihun",
-            harga: 2000,
-            gambar: "images/Korket.jpg"
-        },
-
-        {
-            nama: "Korket Ubi",
-            harga: 2000,
-            gambar: "images/Korket.jpg"
-        },
-
-        {
-            nama: "Ou'i",
-            harga: 2000,
-            gambar: "images/Ou'i.jpg"
-        },
-
-        {
-            nama: "Gandasturi",
-            harga: 2000,
-            gambar: "images/Gandasturi.jpg"
-        },
-
-        {
-            nama: "Tapai Goreng",
-            harga: 2000,
-            gambar: "images/Tapai_Goreng.jpg"
-        },
-
-        {
-            nama: "Ubi Rambat",
-            harga: 2000,
-            gambar: "images/Ubi_Rambat.jpg"
-        },
-
-        {
-            nama: "Sukun Goreng",
-            harga: 2000,
-            gambar: "images/Sukun.jpg"
-        },
-
-        {
-            nama: "Ubi Kayu Goreng",
-            harga: 2000,
-            gambar: "images/Ubi_Goreng.jpg"
-        },
-
-        {
-            nama: "Keladi Goreng",
-            harga: 2000,
-            gambar: "images/Keladi_Goreng.jpg"
-        },
-
-        {
-            nama: "Bom",
-            harga: 2000,
-            gambar: "images/Bom.jpg"
-        },
-
-        {
-            nama: "Pisang Goreng Keju Susu",
-            harga: 10000,
-            gambar: "images/coming_soon.jpg"
-        },
-
-        {
-            nama: "Pisang Goreng Coklat Susu",
-            harga: 10000,
-            gambar: "images/coming_soon.jpg"
-        },
-
-        {
-            nama: "Cucur",
-            harga: 3000,
-            gambar: "images/Cucur.jpg"
-        },
-
-        {
-            nama: "Roti Hock Kelapa",
-            harga: 3000,
-            gambar: "images/Roti_Hock.jpg"
-        },
-
-        {
-            nama: "Roti Hock Kacang",
-            harga: 3000,
-            gambar: "images/Roti_Hock.jpg"
-        },
-
-        {
-            nama: "Talam Ebi",
-            harga: 8000,
-            gambar: "images/Talam_Ebi.jpg"
-        },
-
-        {
-            nama: "Chai Kue",
-            harga: 8000,
-            gambar: "images/Chai_Kue.jpg"
-        }
-
-    ];
+    </footer>
 
 
-    /* =========================================
-       KERANJANG
-    ========================================= */
+    <script>
 
-    let cart = {};
+        /* =========================================
+        DATA MENU
+        ========================================= */
 
+        const menu = [
 
-    /* =========================================
-       FORMAT RUPIAH
-    ========================================= */
-
-    function rupiah(angka) {
-
-        return new Intl.NumberFormat(
-            "id-ID",
             {
-                style: "currency",
-                currency: "IDR",
-                minimumFractionDigits: 0
+                nama: "Risol Mayo",
+                harga: 3000,
+                gambar: "images/Risol_Mayo.jpg"
+            },
+
+            {
+                nama: "Pisang Goreng",
+                harga: 2000,
+                gambar: "images/Pisang_Goreng.jpg"
+            },
+
+            {
+                nama: "Bakwan",
+                harga: 2000,
+                gambar: "images/Bakwan.jpg"
+            },
+
+            {
+                nama: "Tahu Goreng",
+                harga: 2000,
+                gambar: "images/Tahu_Goreng.jpg"
+            },
+
+            {
+                nama: "Tempe Goreng",
+                harga: 2000,
+                gambar: "images/Tempe_Goreng.jpg"
+            },
+
+            {
+                nama: "Korket Bengkuang",
+                harga: 2000,
+                gambar: "images/Korket.jpg"
+            },
+
+            {
+                nama: "Korket Bihun",
+                harga: 2000,
+                gambar: "images/Korket.jpg"
+            },
+
+            {
+                nama: "Korket Ubi",
+                harga: 2000,
+                gambar: "images/Korket.jpg"
+            },
+
+            {
+                nama: "Ou'i",
+                harga: 2000,
+                gambar: "images/Ou'i.jpg"
+            },
+
+            {
+                nama: "Gandasturi",
+                harga: 2000,
+                gambar: "images/Gandasturi.jpg"
+            },
+
+            {
+                nama: "Tapai Goreng",
+                harga: 2000,
+                gambar: "images/Tapai_Goreng.jpg"
+            },
+
+            {
+                nama: "Ubi Rambat",
+                harga: 2000,
+                gambar: "images/Ubi_Rambat.jpg"
+            },
+
+            {
+                nama: "Sukun Goreng",
+                harga: 2000,
+                gambar: "images/Sukun.jpg"
+            },
+
+            {
+                nama: "Ubi Kayu Goreng",
+                harga: 2000,
+                gambar: "images/Ubi_Goreng.jpg"
+            },
+
+            {
+                nama: "Keladi Goreng",
+                harga: 2000,
+                gambar: "images/Keladi_Goreng.jpg"
+            },
+
+            {
+                nama: "Bom",
+                harga: 2000,
+                gambar: "images/Bom.jpg"
+            },
+
+            {
+                nama: "Pisang Goreng Keju Susu",
+                harga: 10000,
+                gambar: "images/coming_soon.jpg"
+            },
+
+            {
+                nama: "Pisang Goreng Coklat Susu",
+                harga: 10000,
+                gambar: "images/coming_soon.jpg"
+            },
+
+            {
+                nama: "Cucur",
+                harga: 3000,
+                gambar: "images/Cucur.jpg"
+            },
+
+            {
+                nama: "Roti Hock Kelapa",
+                harga: 3000,
+                gambar: "images/Roti_Hock.jpg"
+            },
+
+            {
+                nama: "Roti Hock Kacang",
+                harga: 3000,
+                gambar: "images/Roti_Hock.jpg"
+            },
+
+            {
+                nama: "Talam Ebi",
+                harga: 8000,
+                gambar: "images/Talam_Ebi.jpg"
+            },
+
+            {
+                nama: "Chai Kue",
+                harga: 8000,
+                gambar: "images/Chai_Kue.jpg"
             }
-        ).format(angka);
 
-    }
-
-
-    /* =========================================
-       TAMPILKAN MENU
-    ========================================= */
-
-    function tampilkanMenu() {
-
-        const container =
-            document.getElementById("menuContainer");
-
-        container.innerHTML = "";
-
-        menu.forEach((item, index) => {
-
-            cart[index] = 0;
-
-            container.innerHTML += `
-
-                <div class="menu-card">
-
-                    <div class="menu-image">
-                        <img
-                            src="${item.gambar}"
-                            alt="${item.nama}"
-                        >
-                    </div>
-
-                    <h3>
-                        ${item.nama}
-                    </h3>
-
-                    <div class="price">
-                        ${rupiah(item.harga)}
-                    </div>
-
-                    <div class="quantity">
-
-                        <button
-                            onclick="kurangi(${index})"
-                        >
-                            −
-                        </button>
-
-                        <span id="jumlah-${index}">
-                            0
-                        </span>
-
-                        <button
-                            onclick="tambah(${index})"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        });
-
-    }
+        ];
 
 
-    /* =========================================
-       TAMBAH JUMLAH
-    ========================================= */
+        /* =========================================
+        KERANJANG
+        ========================================= */
 
-    function tambah(index) {
-
-        cart[index]++;
-
-        updateCart();
-
-    }
+        let cart = {};
 
 
-    /* =========================================
-       KURANGI JUMLAH
-    ========================================= */
+        /* =========================================
+        FORMAT RUPIAH
+        ========================================= */
 
-    function kurangi(index) {
+        function rupiah(angka) {
 
-        if (cart[index] > 0) {
-
-            cart[index]--;
+            return new Intl.NumberFormat(
+                "id-ID",
+                {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0
+                }
+            ).format(angka);
 
         }
 
-        updateCart();
 
-    }
+        /* =========================================
+        TAMPILKAN MENU
+        ========================================= */
 
+        function tampilkanMenu() {
 
-    /* =========================================
-       UPDATE CART
-    ========================================= */
+            const container =
+                document.getElementById("menuContainer");
 
-    function updateCart() {
+            container.innerHTML = "";
 
-        let total = 0;
+            menu.forEach((item, index) => {
 
-        let html = "";
+                cart[index] = 0;
 
-        let adaPesanan = false;
+                container.innerHTML += `
 
+                    <div class="menu-card">
 
-        menu.forEach((item, index) => {
+                        <div class="menu-image">
+                            <img
+                                src="${item.gambar}"
+                                alt="${item.nama}"
+                            >
+                        </div>
 
-            const jumlah = cart[index];
-
-
-            /* Update angka pada menu */
-
-            document.getElementById(
-                `jumlah-${index}`
-            ).innerText = jumlah;
-
-
-            /* Jika jumlah lebih dari 0 */
-
-            if (jumlah > 0) {
-
-                adaPesanan = true;
-
-
-                const subtotal =
-                    item.harga * jumlah;
-
-
-                total += subtotal;
-
-
-                html += `
-
-                    <div class="cart-item">
-
-                        <span>
+                        <h3>
                             ${item.nama}
-                            × ${jumlah}
-                        </span>
+                        </h3>
 
-                        <strong>
-                            ${rupiah(subtotal)}
-                        </strong>
+                        <div class="price">
+                            ${rupiah(item.harga)}
+                        </div>
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="kurangi(${index})"
+                            >
+                                −
+                            </button>
+
+                            <span id="jumlah-${index}">
+                                0
+                            </span>
+
+                            <button
+                                onclick="tambah(${index})"
+                            >
+                                +
+                            </button>
+
+                        </div>
 
                     </div>
 
                 `;
 
-            }
-
-        });
-
-
-        /* Jika belum ada pesanan */
-
-        if (!adaPesanan) {
-
-            html = `
-                <div class="empty-cart">
-                    Belum ada pesanan
-                </div>
-            `;
-
-        }
-
-
-        /* Tampilkan isi cart */
-
-        document.getElementById(
-            "cartItems"
-        ).innerHTML = html;
-
-
-        /* Update total cart */
-
-        document.getElementById(
-            "cartTotal"
-        ).textContent = rupiah(total);
-
-
-        /* Update floating cart */
-
-        updateFloatingCart();
-
-    }
-
-
-    /* =========================================
-       UPDATE FLOATING CART
-    ========================================= */
-
-    function updateFloatingCart() {
-
-        let jumlahItem = 0;
-
-        let total = 0;
-
-
-        Object.keys(cart).forEach(index => {
-
-            jumlahItem += cart[index];
-
-            total +=
-                cart[index] *
-                menu[index].harga;
-
-        });
-
-
-        /* Jumlah item */
-
-        document.getElementById(
-            "floatingCartCount"
-        ).textContent =
-            jumlahItem + " item";
-
-
-        /* Total harga */
-
-        document.getElementById(
-            "floatingCartTotal"
-        ).textContent =
-            rupiah(total);
-
-    }
-
-
-    /* =========================================
-       SCROLL KE KERANJANG
-    ========================================= */
-
-    function scrollToCart() {
-
-        const cartElement =
-            document.getElementById("cartItems");
-
-
-        if (cartElement) {
-
-            cartElement.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "center"
-
             });
 
         }
 
-    }
 
+        /* =========================================
+        TAMBAH JUMLAH
+        ========================================= */
 
-    /* =========================================
-       TANGGAL & WAKTU PEMESANAN OTOMATIS
-    ========================================= */
+        function tambah(index) {
 
-    function tanggalSekarang() {
+            cart[index]++;
 
-        const sekarang =
-            new Date();
-
-
-        const tanggal =
-            sekarang.toLocaleDateString(
-                "id-ID",
-                {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }
-            );
-
-
-        const waktu =
-            sekarang.toLocaleTimeString(
-                "id-ID",
-                {
-                    hour: "2-digit",
-                    minute: "2-digit"
-                }
-            );
-
-
-        document.getElementById(
-            "tanggalPemesanan"
-        ).innerText =
-            tanggal;
-
-
-        document.getElementById(
-            "waktuPemesanan"
-        ).innerText =
-            waktu;
-
-    }
-
-
-    /* =========================================
-       SET TANGGAL MINIMUM PESANAN
-    ========================================= */
-
-    function setTanggalMinimum() {
-
-        const sekarang =
-            new Date();
-
-
-        const tahun =
-            sekarang.getFullYear();
-
-
-        const bulan =
-            String(
-                sekarang.getMonth() + 1
-            ).padStart(2, "0");
-
-
-        const hari =
-            String(
-                sekarang.getDate()
-            ).padStart(2, "0");
-
-
-        const tanggalHariIni =
-            `${tahun}-${bulan}-${hari}`;
-
-
-        const input =
-            document.getElementById(
-                "tanggalPesanan"
-            );
-
-
-        input.min =
-            tanggalHariIni;
-
-
-        input.value =
-            tanggalHariIni;
-
-    }
-
-
-    /* =========================================
-       KIRIM PESANAN KE WHATSAPP
-    ========================================= */
-
-    function kirimWhatsApp() {
-
-        const nama =
-            document.getElementById(
-                "nama"
-            ).value.trim();
-
-
-        const lantai =
-            document.getElementById(
-                "lantai"
-            ).value;
-
-
-        const tanggalPesanan =
-            document.getElementById(
-                "tanggalPesanan"
-            ).value;
-
-
-        const jamPesanan =
-            document.getElementById(
-                "jamPesanan"
-            ).value;
-
-
-        const catatan =
-            document.getElementById(
-                "catatan"
-            ).value.trim();
-
-
-        /* =====================================
-           VALIDASI
-        ===================================== */
-
-        if (!nama) {
-
-            alert(
-                "Silakan masukkan nama pemesan."
-            );
-
-            return;
+            updateCart();
 
         }
 
 
-        if (!lantai) {
+        /* =========================================
+        KURANGI JUMLAH
+        ========================================= */
 
-            alert(
-                "Silakan pilih lantai / lokasi."
-            );
+        function kurangi(index) {
 
-            return;
+            if (cart[index] > 0) {
 
-        }
-
-
-        if (!tanggalPesanan) {
-
-            alert(
-                "Silakan pilih tanggal pesanan."
-            );
-
-            return;
-
-        }
-
-
-        if (!jamPesanan) {
-
-            alert(
-                "Silakan pilih jam pesanan."
-            );
-
-            return;
-
-        }
-
-
-        /* =====================================
-           AMBIL PESANAN
-        ===================================== */
-
-        let daftarPesanan = [];
-
-        let total = 0;
-
-
-        menu.forEach((item, index) => {
-
-            const jumlah =
-                cart[index];
-
-
-            if (jumlah > 0) {
-
-                const subtotal =
-                    item.harga * jumlah;
-
-
-                total += subtotal;
-
-
-                daftarPesanan.push(
-
-                    item.nama +
-                    " x" +
-                    jumlah +
-                    " = " +
-                    rupiah(subtotal)
-
-                );
+                cart[index]--;
 
             }
 
-        });
-
-
-        /* =====================================
-           CEK PESANAN
-        ===================================== */
-
-        if (
-            daftarPesanan.length === 0
-        ) {
-
-            alert(
-                "Silakan pilih minimal satu menu."
-            );
-
-            return;
+            updateCart();
 
         }
 
 
-        /* =====================================
-           FORMAT TANGGAL
-        ===================================== */
+        /* =========================================
+        UPDATE CART
+        ========================================= */
 
-        const tanggalFormat =
-            new Date(
-                tanggalPesanan +
-                "T00:00:00"
-            ).toLocaleDateString(
-                "id-ID",
-                {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
+        function updateCart() {
+
+            let total = 0;
+
+            let html = "";
+
+            let adaPesanan = false;
+
+
+            menu.forEach((item, index) => {
+
+                const jumlah = cart[index];
+
+
+                /* Update angka pada menu */
+
+                document.getElementById(
+                    `jumlah-${index}`
+                ).innerText = jumlah;
+
+
+                /* Jika jumlah lebih dari 0 */
+
+                if (jumlah > 0) {
+
+                    adaPesanan = true;
+
+
+                    const subtotal =
+                        item.harga * jumlah;
+
+
+                    total += subtotal;
+
+
+                    html += `
+
+                        <div class="cart-item">
+
+                            <span>
+                                ${item.nama}
+                                × ${jumlah}
+                            </span>
+
+                            <strong>
+                                ${rupiah(subtotal)}
+                            </strong>
+
+                        </div>
+
+                    `;
+
                 }
-            );
-
-
-        /* =====================================
-           BUAT PESAN
-        ===================================== */
-
-        let pesan =
-
-`GORENGAN LEGEND 1998
-
-DETAIL PESANAN
---------------------------------
-Nama          : ${nama}
-Lokasi        : ${lantai}
-Tanggal       : ${tanggalFormat}
-Jam Pesanan   : ${jamPesanan}
-
-MENU PESANAN
---------------------------------
-${daftarPesanan.join("\n")}
-
---------------------------------
-TOTAL         : ${rupiah(total)}
-
-Pembayaran dilakukan melalui QRIS.`;
-
-
-        /* =====================================
-           CATATAN
-        ===================================== */
-
-        if (catatan) {
-
-            pesan +=
-                `\n\nCatatan      : ${catatan}`;
-
-        }
-
-
-        /* =====================================
-           LINK GRUP WHATSAPP
-        ===================================== */
-
-        const linkGrupWhatsApp =
-            "https://chat.whatsapp.com/L1XoZsEAYhXF5wIJOjAuB7";
-
-
-        /* =====================================
-           SALIN PESAN
-        ===================================== */
-
-        navigator.clipboard
-            .writeText(pesan)
-
-            .then(() => {
-
-                alert(
-                    "Detail pesanan sudah disalin.\n\n" +
-                    "WhatsApp akan dibuka. " +
-                    "Silakan masuk ke grup, lalu tekan Ctrl + V dan kirim."
-                );
-
-
-                window.open(
-                    linkGrupWhatsApp,
-                    "_blank"
-                );
-
-            })
-
-            .catch(() => {
-
-                alert(
-                    "Gagal menyalin detail pesanan secara otomatis.\n\n" +
-                    "Silakan salin pesanan secara manual."
-                );
-
-
-                window.open(
-                    linkGrupWhatsApp,
-                    "_blank"
-                );
 
             });
 
-    }
+
+            /* Jika belum ada pesanan */
+
+            if (!adaPesanan) {
+
+                html = `
+                    <div class="empty-cart">
+                        Belum ada pesanan
+                    </div>
+                `;
+
+            }
 
 
-    /* =========================================
-       JALANKAN PROGRAM
-    ========================================= */
+            /* Tampilkan isi cart */
 
-    tampilkanMenu();
-
-    updateCart();
-
-    tanggalSekarang();
-
-    setTanggalMinimum();
+            document.getElementById(
+                "cartItems"
+            ).innerHTML = html;
 
 
-    /* Update waktu setiap 1 menit */
+            /* Update total cart */
 
-    setInterval(
-        tanggalSekarang,
-        60000
-    );
+            document.getElementById(
+                "cartTotal"
+            ).textContent = rupiah(total);
 
-</script>
 
-</body>
-</html>
+            /* Update floating cart */
+
+            updateFloatingCart();
+
+        }
+
+
+        /* =========================================
+        UPDATE FLOATING CART
+        ========================================= */
+
+        function updateFloatingCart() {
+
+            let jumlahItem = 0;
+
+            let total = 0;
+
+
+            Object.keys(cart).forEach(index => {
+
+                jumlahItem += cart[index];
+
+                total +=
+                    cart[index] *
+                    menu[index].harga;
+
+            });
+
+
+            /* Jumlah item */
+
+            document.getElementById(
+                "floatingCartCount"
+            ).textContent =
+                jumlahItem + " item";
+
+
+            /* Total harga */
+
+            document.getElementById(
+                "floatingCartTotal"
+            ).textContent =
+                rupiah(total);
+
+            const floatingCart =
+                document.querySelector(".floating-cart");
+
+            floatingCart.classList.remove("cart-updated");
+
+            void floatingCart.offsetWidth;
+
+            floatingCart.classList.add("cart-updated");
+        }
+
+
+        /* =========================================
+        SCROLL KE KERANJANG
+        ========================================= */
+
+        function scrollToCart() {
+
+            const cartElement =
+                document.getElementById("cartItems");
+
+
+            if (cartElement) {
+
+                cartElement.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
+            }
+
+        }
+
+
+        /* =========================================
+        TANGGAL & WAKTU PEMESANAN OTOMATIS
+        ========================================= */
+
+        function tanggalSekarang() {
+
+            const sekarang =
+                new Date();
+
+
+            const tanggal =
+                sekarang.toLocaleDateString(
+                    "id-ID",
+                    {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            const waktu =
+                sekarang.toLocaleTimeString(
+                    "id-ID",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }
+                );
+
+
+            document.getElementById(
+                "tanggalPemesanan"
+            ).innerText =
+                tanggal;
+
+
+            document.getElementById(
+                "waktuPemesanan"
+            ).innerText =
+                waktu;
+
+        }
+
+
+        /* =========================================
+        SET TANGGAL MINIMUM PESANAN
+        ========================================= */
+
+        function setTanggalMinimum() {
+
+            const sekarang =
+                new Date();
+
+
+            const tahun =
+                sekarang.getFullYear();
+
+
+            const bulan =
+                String(
+                    sekarang.getMonth() + 1
+                ).padStart(2, "0");
+
+
+            const hari =
+                String(
+                    sekarang.getDate()
+                ).padStart(2, "0");
+
+
+            const tanggalHariIni =
+                `${tahun}-${bulan}-${hari}`;
+
+
+            const input =
+                document.getElementById(
+                    "tanggalPesanan"
+                );
+
+
+            input.min =
+                tanggalHariIni;
+
+
+            input.value =
+                tanggalHariIni;
+
+        }
+
+
+        /* =========================================
+        KIRIM PESANAN KE WHATSAPP
+        ========================================= */
+
+        function kirimWhatsApp() {
+
+            const nama =
+                document.getElementById(
+                    "nama"
+                ).value.trim();
+
+
+            const lantai =
+                document.getElementById(
+                    "lantai"
+                ).value;
+
+
+            const tanggalPesanan =
+                document.getElementById(
+                    "tanggalPesanan"
+                ).value;
+
+
+            const jamPesanan =
+                document.getElementById(
+                    "jamPesanan"
+                ).value;
+
+
+            const catatan =
+                document.getElementById(
+                    "catatan"
+                ).value.trim();
+
+
+            /* =====================================
+            VALIDASI
+            ===================================== */
+
+            if (!nama) {
+
+                alert(
+                    "Silakan masukkan nama pemesan."
+                );
+
+                document.getElementById("nama").focus();
+
+                return;
+
+            }
+
+
+            if (!lantai) {
+
+                alert(
+                    "Silakan pilih lantai / lokasi."
+                );
+
+                document.getElementById("lantai").focus();
+
+                return;
+
+            }
+
+
+            if (!tanggalPesanan) {
+
+                alert(
+                    "Silakan pilih tanggal pesanan."
+                );
+
+                document.getElementById("tanggalPesanan").focus();
+
+                return;
+
+            }
+
+
+            if (!jamPesanan) {
+
+                alert(
+                    "Silakan pilih jam pesanan."
+                );
+
+                document.getElementById("jamPesanan").focus();
+
+                return;
+
+            }
+
+
+            /* =====================================
+            AMBIL PESANAN
+            ===================================== */
+
+            let daftarPesanan = [];
+
+            let total = 0;
+
+
+            menu.forEach((item, index) => {
+
+                const jumlah =
+                    cart[index];
+
+
+                if (jumlah > 0) {
+
+                    const subtotal =
+                        item.harga * jumlah;
+
+
+                    total += subtotal;
+
+
+                    daftarPesanan.push(
+
+                        item.nama +
+                        " x" +
+                        jumlah +
+                        " = " +
+                        rupiah(subtotal)
+
+                    );
+
+                }
+
+            });
+
+
+            /* =====================================
+            CEK PESANAN
+            ===================================== */
+
+            if (
+                    daftarPesanan.length === 0
+                ) {
+
+                    alert(
+                        "Silakan pilih minimal satu menu sebelum melanjutkan."
+                    );
+
+                    return;
+
+                }
+
+
+            /* =====================================
+            FORMAT TANGGAL
+            ===================================== */
+
+            const tanggalFormat =
+                new Date(
+                    tanggalPesanan +
+                    "T00:00:00"
+                ).toLocaleDateString(
+                    "id-ID",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            /* =====================================
+            BUAT PESAN
+            ===================================== */
+
+            let pesan =
+
+    `GORENGAN LEGEND 1998
+
+    DETAIL PESANAN
+    --------------------------------
+    Nama          : ${nama}
+    Lokasi        : ${lantai}
+    Tanggal       : ${tanggalFormat}
+    Jam Pesanan   : ${jamPesanan}
+
+    MENU PESANAN
+    --------------------------------
+    ${daftarPesanan.join("\n")}
+
+    --------------------------------
+    TOTAL         : ${rupiah(total)}
+
+    Pembayaran dilakukan melalui QRIS.`;
+
+
+            /* =====================================
+            CATATAN
+            ===================================== */
+
+            if (catatan) {
+
+                pesan +=
+                    `\n\nCatatan      : ${catatan}`;
+
+            }
+
+
+            /* =====================================
+            LINK GRUP WHATSAPP
+            ===================================== */
+
+            const linkGrupWhatsApp =
+                "https://chat.whatsapp.com/L1XoZsEAYhXF5wIJOjAuB7";
+
+
+            /* =====================================
+            SALIN PESAN
+            ===================================== */
+
+            navigator.clipboard
+                .writeText(pesan)
+
+                .then(() => {
+
+                    alert(
+                        "Detail pesanan sudah disalin.\n\n" +
+                        "WhatsApp akan dibuka. " +
+                        "Silakan masuk ke grup, lalu tekan Ctrl + V dan kirim."
+                    );
+
+
+                    window.open(
+                        linkGrupWhatsApp,
+                        "_blank"
+                    );
+
+                })
+
+                .catch(() => {
+
+                    alert(
+                        "Gagal menyalin detail pesanan secara otomatis.\n\n" +
+                        "Silakan salin pesanan secara manual."
+                    );
+
+
+                    window.open(
+                        linkGrupWhatsApp,
+                        "_blank"
+                    );
+
+                });
+
+        }
+
+
+        /* =========================================
+        JALANKAN PROGRAM
+        ========================================= */
+
+        tampilkanMenu();
+
+        updateCart();
+
+        tanggalSekarang();
+
+        setTanggalMinimum();
+
+
+        /* Update waktu setiap 1 menit */
+
+        setInterval(
+            tanggalSekarang,
+            60000
+        );
+
+    </script>
+
+    </body>
+    </html>
