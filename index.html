@@ -5,8 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gorengan Legend 1998</title>
-
+    
     <style>
+
+                /* ================================
+        FLOATING CART
+        ================================ */
+
+        .floating-cart {
+            position: fixed;
+            bottom: 22px;
+            right: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 210px;
+            background: var(--green);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(23, 63, 43, 0.25);
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .floating-cart:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(23, 63, 43, 0.32);
+        }
+
+        .floating-cart:active {
+            transform: translateY(-1px);
+        }
+
+        .floating-cart-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        .floating-cart-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+
+        .floating-cart-info span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .floating-cart-info strong {
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .floating-cart-arrow {
+            font-size: 20px;
+            color: #d8c99f;
+            transition: transform 0.25s ease;
+        }
+
+        .floating-cart:hover .floating-cart-arrow {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 600px) {
+
+            .floating-cart-info strong {
+                font-size: 15px;
+            }
+
+            .floating-cart-info span {
+                font-size: 11px;
+            }
+
+            .floating-cart-arrow {
+                font-size: 18px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -63,18 +150,6 @@
             border-radius: 50%;
             object-fit: cover;
             display: block;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--green);
-            font-size: 22px;
         }
 
         .logo span {
@@ -154,66 +229,92 @@
 
         .menu-card {
             background: var(--white);
-            border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 5px 20px rgba(30,50,40,0.08);
+            border-radius: 20px;
+            padding: 14px;
             border: 1px solid #e8dfcb;
-            transition: 0.25s;
+            box-shadow: 0 6px 20px rgba(23, 63, 43, 0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .menu-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(30,50,40,0.13);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(23, 63, 43, 0.15);
+            border-color: #d8c99f;
         }
 
         .menu-image {
-            height: 180px;
-            border-radius: 14px;
+            height: 190px;
+            border-radius: 16px;
             background: var(--cream);
             overflow: hidden;
             margin-bottom: 17px;
+            position: relative;
         }
 
-.menu-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-card:hover .menu-image img {
+            transform: scale(1.05);
+        }
 
         .menu-card h3 {
             color: var(--green);
-            margin-bottom: 7px;
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 6px;
         }
 
         .price {
             color: var(--green-light);
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
 
         .quantity {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--cream);
+            background: #f8f3e7;
             padding: 6px;
-            border-radius: 10px;
+            border-radius: 12px;
+            border: 1px solid #eee5d3;
         }
 
         .quantity button {
             border: none;
             background: var(--green);
             color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
             cursor: pointer;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .quantity button:hover {
+            background: var(--green-light);
+            transform: scale(1.05);
+        }
+
+        .quantity button:active {
+            transform: scale(0.95);
         }
 
         .quantity span {
+            min-width: 30px;
+            text-align: center;
             font-weight: bold;
+            font-size: 16px;
             color: var(--green);
         }
 
@@ -309,19 +410,30 @@
             border-bottom: none;
         }
 
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--green);
-        }
-
         .empty-cart {
             color: var(--gray);
             text-align: center;
             padding: 15px;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 14px;
+            border-top: 1px solid #d8cfbb;
+        }
+
+        .cart-summary span {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: bold;
+        }
+
+        .cart-summary strong {
+            font-size: 18px;
+            color: var(--green);
         }
 
         /* WHATSAPP */
@@ -452,25 +564,23 @@
             }
         }
     </style>
+    
 </head>
 
 <body>
 
 <!-- HEADER -->
 <header>
-    <div class="navbar">
-            <div class="logo">
-                <img src="images/Bakwan.jpg" alt="Bakwan">
-                    <span>Gorengan Legend 1998</span>
-        </div>
-</div>
 
-            <div>
-                
-            </div>
+    <div class="navbar">
+
+        <div class="logo">
+            <img src="images/Bakwan.jpg" alt="Bakwan">
+            <span>Gorengan Legend 1998</span>
         </div>
 
     </div>
+
 </header>
 
 
@@ -592,18 +702,18 @@
             <!-- CART -->
             <div class="cart">
 
-                <div id="cartItems">
-                    <div class="empty-cart">
-                        Belum ada pesanan
-                    </div>
+            <div id="cartItems">
+                <div class="empty-cart">
+                    Belum ada pesanan
                 </div>
-
-                <div class="cart-total">
-                    <span>Total</span>
-                    <span id="totalHarga">Rp0</span>
-                </div>
-
             </div>
+
+            <div class="cart-summary">
+                <span>Total Pesanan</span>
+                <strong id="cartTotal">Rp0</strong>
+            </div>
+
+        </div>
 
 
             <button
@@ -668,6 +778,33 @@
 
 </section>
 
+<!-- FLOATING CART -->
+<div
+    class="floating-cart"
+    onclick="scrollToCart()"
+>
+
+    <div class="floating-cart-icon">
+        🛒
+    </div>
+
+    <div class="floating-cart-info">
+
+        <span id="floatingCartCount">
+            0 item
+        </span>
+
+        <strong id="floatingCartTotal">
+            Rp0
+        </strong>
+
+    </div>
+
+    <div class="floating-cart-arrow">
+        →
+    </div>
+
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -812,7 +949,7 @@
         },
 
         {
-            nama: "Roti Hock Kacang ",
+            nama: "Roti Hock Kacang",
             harga: 3000,
             gambar: "images/Roti_Hock.jpg"
         },
@@ -874,46 +1011,46 @@
 
             container.innerHTML += `
 
-    <div class="menu-card">
+                <div class="menu-card">
 
-        <div class="menu-image">
-            <img
-                src="${item.gambar}"
-                alt="${item.nama}"
-            >
-        </div>
+                    <div class="menu-image">
+                        <img
+                            src="${item.gambar}"
+                            alt="${item.nama}"
+                        >
+                    </div>
 
-        <h3>
-            ${item.nama}
-        </h3>
+                    <h3>
+                        ${item.nama}
+                    </h3>
 
-        <div class="price">
-            ${rupiah(item.harga)}
-        </div>
+                    <div class="price">
+                        ${rupiah(item.harga)}
+                    </div>
 
-        <div class="quantity">
+                    <div class="quantity">
 
-            <button
-                onclick="kurangi(${index})"
-            >
-                −
-            </button>
+                        <button
+                            onclick="kurangi(${index})"
+                        >
+                            −
+                        </button>
 
-            <span id="jumlah-${index}">
-                0
-            </span>
+                        <span id="jumlah-${index}">
+                            0
+                        </span>
 
-            <button
-                onclick="tambah(${index})"
-            >
-                +
-            </button>
+                        <button
+                            onclick="tambah(${index})"
+                        >
+                            +
+                        </button>
 
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-`;
+            `;
 
         });
 
@@ -921,7 +1058,7 @@
 
 
     /* =========================================
-       TAMBAH
+       TAMBAH JUMLAH
     ========================================= */
 
     function tambah(index) {
@@ -934,7 +1071,7 @@
 
 
     /* =========================================
-       KURANGI
+       KURANGI JUMLAH
     ========================================= */
 
     function kurangi(index) {
@@ -967,17 +1104,24 @@
 
             const jumlah = cart[index];
 
+
+            /* Update angka pada menu */
+
             document.getElementById(
                 `jumlah-${index}`
             ).innerText = jumlah;
 
 
+            /* Jika jumlah lebih dari 0 */
+
             if (jumlah > 0) {
 
                 adaPesanan = true;
 
+
                 const subtotal =
                     item.harga * jumlah;
+
 
                 total += subtotal;
 
@@ -1004,6 +1148,8 @@
         });
 
 
+        /* Jika belum ada pesanan */
+
         if (!adaPesanan) {
 
             html = `
@@ -1015,14 +1161,88 @@
         }
 
 
+        /* Tampilkan isi cart */
+
         document.getElementById(
             "cartItems"
         ).innerHTML = html;
 
 
+        /* Update total cart */
+
         document.getElementById(
-            "totalHarga"
-        ).innerText = rupiah(total);
+            "cartTotal"
+        ).textContent = rupiah(total);
+
+
+        /* Update floating cart */
+
+        updateFloatingCart();
+
+    }
+
+
+    /* =========================================
+       UPDATE FLOATING CART
+    ========================================= */
+
+    function updateFloatingCart() {
+
+        let jumlahItem = 0;
+
+        let total = 0;
+
+
+        Object.keys(cart).forEach(index => {
+
+            jumlahItem += cart[index];
+
+            total +=
+                cart[index] *
+                menu[index].harga;
+
+        });
+
+
+        /* Jumlah item */
+
+        document.getElementById(
+            "floatingCartCount"
+        ).textContent =
+            jumlahItem + " item";
+
+
+        /* Total harga */
+
+        document.getElementById(
+            "floatingCartTotal"
+        ).textContent =
+            rupiah(total);
+
+    }
+
+
+    /* =========================================
+       SCROLL KE KERANJANG
+    ========================================= */
+
+    function scrollToCart() {
+
+        const cartElement =
+            document.getElementById("cartItems");
+
+
+        if (cartElement) {
+
+            cartElement.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "center"
+
+            });
+
+        }
 
     }
 
@@ -1033,7 +1253,8 @@
 
     function tanggalSekarang() {
 
-        const sekarang = new Date();
+        const sekarang =
+            new Date();
 
 
         const tanggal =
@@ -1060,31 +1281,37 @@
 
         document.getElementById(
             "tanggalPemesanan"
-        ).innerText = tanggal;
+        ).innerText =
+            tanggal;
 
 
         document.getElementById(
             "waktuPemesanan"
-        ).innerText = waktu;
+        ).innerText =
+            waktu;
 
     }
 
 
     /* =========================================
-       SET DEFAULT TANGGAL PESANAN
+       SET TANGGAL MINIMUM PESANAN
     ========================================= */
 
     function setTanggalMinimum() {
 
-        const sekarang = new Date();
+        const sekarang =
+            new Date();
+
 
         const tahun =
             sekarang.getFullYear();
+
 
         const bulan =
             String(
                 sekarang.getMonth() + 1
             ).padStart(2, "0");
+
 
         const hari =
             String(
@@ -1102,119 +1329,180 @@
             );
 
 
-        input.min = tanggalHariIni;
+        input.min =
+            tanggalHariIni;
 
-        input.value = tanggalHariIni;
+
+        input.value =
+            tanggalHariIni;
 
     }
 
 
     /* =========================================
-       KIRIM KE WHATSAPP
+       KIRIM PESANAN KE WHATSAPP
     ========================================= */
 
     function kirimWhatsApp() {
 
-    const nama =
-        document.getElementById("nama").value.trim();
-
-    const lantai =
-        document.getElementById("lantai").value;
-
-    const tanggalPesanan =
-        document.getElementById("tanggalPesanan").value;
-
-    const jamPesanan =
-        document.getElementById("jamPesanan").value;
-
-    const catatan =
-        document.getElementById("catatan").value.trim();
+        const nama =
+            document.getElementById(
+                "nama"
+            ).value.trim();
 
 
-    /* VALIDASI */
-
-    if (!nama) {
-        alert("Silakan masukkan nama pemesan.");
-        return;
-    }
-
-    if (!lantai) {
-        alert("Silakan pilih lantai / lokasi.");
-        return;
-    }
-
-    if (!tanggalPesanan) {
-        alert("Silakan pilih tanggal pesanan.");
-        return;
-    }
-
-    if (!jamPesanan) {
-        alert("Silakan pilih jam pesanan.");
-        return;
-    }
+        const lantai =
+            document.getElementById(
+                "lantai"
+            ).value;
 
 
-    let daftarPesanan = [];
-    let total = 0;
+        const tanggalPesanan =
+            document.getElementById(
+                "tanggalPesanan"
+            ).value;
 
 
-    /* AMBIL MENU */
+        const jamPesanan =
+            document.getElementById(
+                "jamPesanan"
+            ).value;
 
-    menu.forEach((item, index) => {
 
-        const jumlah = cart[index];
+        const catatan =
+            document.getElementById(
+                "catatan"
+            ).value.trim();
 
-        if (jumlah > 0) {
 
-            const subtotal =
-                item.harga * jumlah;
+        /* =====================================
+           VALIDASI
+        ===================================== */
 
-            total += subtotal;
+        if (!nama) {
 
-            daftarPesanan.push(
-                item.nama +
-                " x" +
-                jumlah +
-                " = " +
-                rupiah(subtotal)
+            alert(
+                "Silakan masukkan nama pemesan."
             );
+
+            return;
 
         }
 
-    });
+
+        if (!lantai) {
+
+            alert(
+                "Silakan pilih lantai / lokasi."
+            );
+
+            return;
+
+        }
 
 
-    /* CEK PESANAN */
+        if (!tanggalPesanan) {
 
-    if (daftarPesanan.length === 0) {
+            alert(
+                "Silakan pilih tanggal pesanan."
+            );
 
-        alert(
-            "Silakan pilih minimal satu menu."
-        );
+            return;
 
-        return;
-
-    }
+        }
 
 
-    /* FORMAT TANGGAL */
+        if (!jamPesanan) {
 
-    const tanggalFormat =
-        new Date(
-            tanggalPesanan + "T00:00:00"
-        ).toLocaleDateString(
-            "id-ID",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
+            alert(
+                "Silakan pilih jam pesanan."
+            );
+
+            return;
+
+        }
+
+
+        /* =====================================
+           AMBIL PESANAN
+        ===================================== */
+
+        let daftarPesanan = [];
+
+        let total = 0;
+
+
+        menu.forEach((item, index) => {
+
+            const jumlah =
+                cart[index];
+
+
+            if (jumlah > 0) {
+
+                const subtotal =
+                    item.harga * jumlah;
+
+
+                total += subtotal;
+
+
+                daftarPesanan.push(
+
+                    item.nama +
+                    " x" +
+                    jumlah +
+                    " = " +
+                    rupiah(subtotal)
+
+                );
+
             }
-        );
+
+        });
 
 
-    /* BUAT PESAN WHATSAPP */
+        /* =====================================
+           CEK PESANAN
+        ===================================== */
 
-    let pesan =
+        if (
+            daftarPesanan.length === 0
+        ) {
+
+            alert(
+                "Silakan pilih minimal satu menu."
+            );
+
+            return;
+
+        }
+
+
+        /* =====================================
+           FORMAT TANGGAL
+        ===================================== */
+
+        const tanggalFormat =
+            new Date(
+                tanggalPesanan +
+                "T00:00:00"
+            ).toLocaleDateString(
+                "id-ID",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+
+        /* =====================================
+           BUAT PESAN
+        ===================================== */
+
+        let pesan =
+
 `GORENGAN LEGEND 1998
 
 DETAIL PESANAN
@@ -1234,81 +1522,69 @@ TOTAL         : ${rupiah(total)}
 Pembayaran dilakukan melalui QRIS.`;
 
 
-    /* CATATAN */
+        /* =====================================
+           CATATAN
+        ===================================== */
 
-    if (catatan) {
+        if (catatan) {
 
-        pesan +=
-`\n\nCatatan      : ${catatan}`;
+            pesan +=
+                `\n\nCatatan      : ${catatan}`;
+
+        }
+
+
+        /* =====================================
+           LINK GRUP WHATSAPP
+        ===================================== */
+
+        const linkGrupWhatsApp =
+            "https://chat.whatsapp.com/L1XoZsEAYhXF5wIJOjAuB7";
+
+
+        /* =====================================
+           SALIN PESAN
+        ===================================== */
+
+        navigator.clipboard
+            .writeText(pesan)
+
+            .then(() => {
+
+                alert(
+                    "Detail pesanan sudah disalin.\n\n" +
+                    "WhatsApp akan dibuka. " +
+                    "Silakan masuk ke grup, lalu tekan Ctrl + V dan kirim."
+                );
+
+
+                window.open(
+                    linkGrupWhatsApp,
+                    "_blank"
+                );
+
+            })
+
+            .catch(() => {
+
+                alert(
+                    "Gagal menyalin detail pesanan secara otomatis.\n\n" +
+                    "Silakan salin pesanan secara manual."
+                );
+
+
+                window.open(
+                    linkGrupWhatsApp,
+                    "_blank"
+                );
+
+            });
 
     }
 
-//     /*
-//     NOMOR WHATSAPP ADMIN
-// */
-
-// const nomorWhatsApp =
-//     "6282156476864";
-
-
-// const url =
-//     "https://wa.me/" +
-//     nomorWhatsApp +
-//     "?text=" +
-//     encodeURIComponent(pesan);
-
-
-// window.open(
-//     url,
-//     "_blank"
-// );
-
-    /*
-    GRUP WHATSAPP
-*/
-
-const linkGrupWhatsApp =
-    "https://chat.whatsapp.com/L1XoZsEAYhXF5wIJOjAuB7";
-
-
-/*
-    SALIN PESAN
-*/
-
-navigator.clipboard.writeText(pesan)
-    .then(() => {
-
-        alert(
-            "Detail pesanan sudah disalin.\n\n" +
-            "WhatsApp akan dibuka. " +
-            "Silakan masuk ke grup, lalu tekan Ctrl + V dan kirim."
-        );
-
-        window.open(
-            linkGrupWhatsApp,
-            "_blank"
-        );
-
-    })
-    .catch(() => {
-
-        alert(
-            "Gagal menyalin detail pesanan secara otomatis.\n\n" +
-            "Silakan salin pesanan secara manual."
-        );
-
-        window.open(
-            linkGrupWhatsApp,
-            "_blank"
-        );
-
-    });
-
-}
-
 
     /* =========================================
-       JALANKAN
+       JALANKAN PROGRAM
     ========================================= */
 
     tampilkanMenu();
@@ -1320,9 +1596,7 @@ navigator.clipboard.writeText(pesan)
     setTanggalMinimum();
 
 
-    /*
-       Update waktu otomatis setiap 1 menit
-    */
+    /* Update waktu setiap 1 menit */
 
     setInterval(
         tanggalSekarang,
